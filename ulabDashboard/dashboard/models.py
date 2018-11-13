@@ -67,7 +67,7 @@ class Project(models.Model):
 class Announcement(models.Model):
     author = models.ForeignKey(Member, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    bio = models.TextField(max_length=750)
+    description = models.TextField(max_length=750)
     date_posted = models.DateTimeField('Date Posted')
     tags = models.TextField(max_length=200, null=True, blank=True)
 

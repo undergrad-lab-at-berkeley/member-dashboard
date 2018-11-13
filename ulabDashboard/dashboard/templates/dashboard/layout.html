@@ -1,0 +1,40 @@
+{% load static %}
+<html>
+    <head>
+        <title> ULAB Dashboard </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="lol someone make sure to change me later">
+        <link rel="stylesheet" type="text/css" href="{% static 'dashboard/style.css' %}">
+    </head>
+    <body>
+        <div class='layout-header'>
+          <div class='header-title'>
+            <a href="{% url 'homepage' %}"> Undergraduate Lab @ Berkeley </a>
+          </div>
+          <div class='header-login'>
+            {% if user.is_authenticated  %}
+                <p> Welcome, {{ user.username }}! </p>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+          </div>
+        </div>
+        <div class='nav-container'>
+          <div class='navbar'>
+            <a class='nav-link' href='#'> Dashboard </a>
+            <a class='nav-link' href='#'> People </a>
+            <a class='nav-link' href='#'> Research Projects </a>
+            <a class='nav-link' href='#'> Labs </a>
+          </div>
+          <div class='nav-footer'>
+            <a class='footer-link'> gamers rise </a>
+          </div>
+        </div>
+        <div class='content-container'>
+          {% block content %}
+          {% endblock %}
+        </div>
+    </body>
+</html>
