@@ -4,20 +4,28 @@ html, body {
   padding: 0px;
 }
 
+body {
+  /*background: rgb(0,0,0,0.01);*/
+}
+
 a {
   text-decoration: none;
 }
 
+/*HEADER*/
 .layout-header {
   position: fixed;
   top: 0px;
   width: 100vw;
   height: 64px;
-  box-shadow: 0px 0px 10px grey;
+  box-shadow: 0px 0px 5px grey;
+  background: white;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  
+  z-index: 100;
 }
 
 .header-title {
@@ -28,6 +36,18 @@ a {
 .header-title > * {
   padding: 6px;
   margin: auto;
+  font-size: 12pt;
+  font-weight: 200;
+  color: #47b475;
+}
+
+.header-title > *:hover {
+  filter: brightness(75%);
+}
+
+.header-logo {
+  height: 32px;
+  width: 32px;
 }
 
 .header-login {
@@ -41,6 +61,8 @@ a {
   margin: auto;
 }
 
+
+/*NAVIGATION*/
 .nav-container {
   position: fixed;
   top: 64px;
@@ -48,11 +70,20 @@ a {
   width: 256px;
   height: calc(100vh - 64px);
   border-right: 1px solid rgb(0,0,0,0.1);
-  background: rgb(0,0,0,0.05);
-  
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: rgb(245, 255, 245);*/
+  /*background: white;*/
+  z-index: 10;
+}
+
+.nav-bg {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
 }
 
 .navbar {
@@ -60,6 +91,7 @@ a {
 
   display: flex;
   flex-direction: column;
+  z-index: 10;
 }
 
 .nav-footer {
@@ -68,15 +100,100 @@ a {
 }
 
 .nav-link {
-  padding: 6px;
+  font-size: 12pt;
+  color: rgb(0,0,0,0.8);
+  padding: 12px 6px;
 }
 
+.nav-link:hover {
+  transform: translateX(10px) scale(1.1);
+}
+
+
+/*PROFILE MENU*/
+.profile-arrow {
+  height: 16px;
+  width: 16px;
+  padding: 4px;
+  border-radius: 2px;
+}
+
+.profile-arrow:hover {
+  /*border: solid 1px black;*/
+  background: lightgray;
+}
+
+.profile-arrow:hover + .profile-menu {
+  display: block;
+}
+
+.profile-menu {
+  display: none;
+  position: absolute;
+  background: lightgray;
+  padding: 32px;
+  top: 44px;
+  right: 38px;
+}
+
+.profile-menu:hover {
+  display: block;
+}
+
+.profile-menu:hover ~ .profile-arrow {
+  display: none;
+}
+
+
+/*CONTENT*/
 .content-container {
-  margin-top: 128px;
-  margin-left: 384px;
+  margin-top: 102px;
+  margin-left: 320px;
   margin-right: 64px;
+  padding-bottom: 64px;
+  z-index: 1;
 }
 
 .content-title {
+  font-size: 32pt;
+  font-weight: 100;
   border-bottom: 1px solid rgb(0,0,0,0.1);
+}
+
+/*ANNOUNCEMENTS*/
+.announcment-container {
+  width: 100%;
+}
+
+.announcment-entry {
+  position: relative;
+  padding-bottom: 18px;
+}
+
+.msg-date {
+  position: absolute;
+  padding-top: 3px;
+  margin: auto;
+  right: 0px;
+  font-size: 12pt;
+}
+
+.msg-title {
+  font-size: 14pt;
+  text-decoration: underline;
+  color: black;
+}
+
+.msg-description {
+  margin: 0px;
+  padding-top: 6px;
+}
+
+.msg-more {
+  color: blue;
+  text-decoration: underline;
+}
+
+.medium-text {
+  line-height: 1.5;
 }

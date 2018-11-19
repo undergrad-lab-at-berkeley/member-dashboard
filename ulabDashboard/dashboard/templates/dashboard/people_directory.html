@@ -1,0 +1,15 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block content %}
+
+    <h1 class='content-title'> People </h1>
+      {% for person in people %}
+          <div class='announcment-entry'>
+            <a href="{% url 'profile' username=person.user.username %}"> <span class='msg-title'>
+              {{ person.full_name }}</span> </a>
+            <p class='msg-description'>&emsp;&emsp;{{ person.status }}
+            </p>
+          </div>
+      {% endfor %}
+
+{% endblock %}

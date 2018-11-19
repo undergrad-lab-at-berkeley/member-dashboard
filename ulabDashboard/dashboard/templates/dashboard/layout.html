@@ -5,31 +5,52 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="lol someone make sure to change me later">
-        <link rel="stylesheet" type="text/css" href="{% static 'dashboard/style.css' %}">
+        <meta name="google" value="notranslate">
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
+        <link rel="stylesheet" type="text/css" href="{% static 'dashboard/style.css' %}?{% now "U" %}">
+        <!--<link rel="stylesheet" type="text/css" href="/site_media/css/style.css?{% now "U" %}" />-->
+
     </head>
     <body>
         <div class='layout-header'>
           <div class='header-title'>
-            <a href="{% url 'homepage' %}"> Undergraduate Lab @ Berkeley </a>
+            <img class='header-logo' src="{% static 'logos/logo_general.png' %}">
+            <a href="{% url 'homepage' %}"> Undergraduate Laboratory @ Berkeley </a>
           </div>
           <div class='header-login'>
             {% if user.is_authenticated  %}
                 <p> Welcome, {{ user.username }}! </p>
                 <a href="{% url 'logout' %}">Logout</a>
             {% else %}
-                <a href="{% url 'login' %}">Login</a>
+                <p> Welcome, Guest! </p>
+                <!--<a href="{% url 'login' %}">Login</a>-->
             {% endif %}
+            <div class='profile-menu-btn'>
+              <img class='profile-arrow' src="{% static 'dashboard/images/home-arrow.png' %}">
+              <div class='profile-menu'>
+                {% if user.is_authenticated  %}
+                  <h2> you is logged in already stupid :) </h2>
+                {% else %}
+                  <h2> Login :) </h2>
+                  <form method="post", action="{% url 'login' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit"> Login </button>
+                  </form>                {% endif %}
+              </div>
+            </div>
           </div>
         </div>
         <div class='nav-container'>
+          <div class='nav-bg'></div>
           <div class='navbar'>
-            <a class='nav-link' href='#'> Dashboard </a>
-            <a class='nav-link' href='#'> People </a>
+            <a class='nav-link' href="{% url 'homepage' %}"> Dashboard </a>
+            <a class='nav-link' href="{% url 'people' %}"> People </a>
             <a class='nav-link' href='#'> Research Projects </a>
             <a class='nav-link' href='#'> Labs </a>
           </div>
           <div class='nav-footer'>
-            <a class='footer-link'> gamers rise </a>
+            <a class='footer-link'> Developed by ATG </a>
           </div>
         </div>
         <div class='content-container'>

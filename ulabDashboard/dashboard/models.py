@@ -19,6 +19,20 @@ class Member(models.Model):
     github = models.URLField(null=True, blank=True)
     website = models.URLField(null=True, blank=True)
 
+    @property
+    def full_name(self):
+      if self.user.first_name and self.user.last_name:
+        return f'{self.user.first_name} {self.user.last_name}'
+      else:
+        return self.user.username
+
+    @property
+    def status(self):
+      if self.active:
+        return 'Active'
+      else:
+        return 'Inactive'
+
     def __str__(self):
         return self.user.username
 
@@ -67,9 +81,16 @@ class Project(models.Model):
 class Announcement(models.Model):
     author = models.ForeignKey(Member, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    description = models.TextField(max_length=750)
+    description = models.TextField(max_length=2500)
     date_posted = models.DateTimeField('Date Posted')
     tags = models.TextField(max_length=200, null=True, blank=True)
+
+    @property
+    def short_description(self):
+        if len(self.description) >= 253:
+          return f'{self.description[:250]}...'
+        else:
+          return self.description
 
     def __str__(self):
         return self.title
