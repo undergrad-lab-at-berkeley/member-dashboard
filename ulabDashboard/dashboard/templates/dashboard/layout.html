@@ -8,8 +8,7 @@
         <meta name="google" value="notranslate">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
         <link rel="stylesheet" type="text/css" href="{% static 'dashboard/style.css' %}?{% now "U" %}">
-        <!--<link rel="stylesheet" type="text/css" href="/site_media/css/style.css?{% now "U" %}" />-->
-
+        <script type="text/javascript" src="{% static 'dashboard/jquery-3.3.1.min.js' %}"> </script>
     </head>
     <body>
         <div class='layout-header'>
@@ -20,22 +19,21 @@
           <div class='header-login'>
             {% if user.is_authenticated  %}
                 <p> Welcome, {{ user.username }}! </p>
-                <a href="{% url 'logout' %}">Logout</a>
+                <!--<a href="{% url 'logout' %}">Logout</a>-->
             {% else %}
                 <p> Welcome, Guest! </p>
-                <!--<a href="{% url 'login' %}">Login</a>-->
+                <!--<a href="{%url 'login' %}">Login</a>-->
             {% endif %}
             <div class='profile-menu-btn'>
               <img class='profile-arrow' src="{% static 'dashboard/images/home-arrow.png' %}">
               <div class='profile-menu'>
                 {% if user.is_authenticated  %}
-                  <h2> you is logged in already stupid :) </h2>
+                  <a href="{% url 'logout' %}">Logout</a>
                 {% else %}
-                  <h2> Login :) </h2>
-                  <form method="post", action="{% url 'login' %}">
+                  <form class="login-form" method="post", action="{% url 'login' %}">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit"> Login </button>
+                    <button class="login-btn" type="submit"> Login </button>
                   </form>                {% endif %}
               </div>
             </div>
@@ -57,5 +55,7 @@
           {% block content %}
           {% endblock %}
         </div>
+    
     </body>
+    <script type="text/javascript" src="{% static 'dashboard/animations.js' %}?{% now "U" %}"> </script>
 </html>

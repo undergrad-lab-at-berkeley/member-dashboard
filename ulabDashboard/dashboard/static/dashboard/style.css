@@ -115,34 +115,60 @@ a {
   height: 16px;
   width: 16px;
   padding: 4px;
-  border-radius: 2px;
+  border-radius: 10px;
+  border: solid 1px rgb(0,0,0,0);
+  z-index: 250;
 }
 
 .profile-arrow:hover {
-  /*border: solid 1px black;*/
-  background: lightgray;
-}
-
-.profile-arrow:hover + .profile-menu {
-  display: block;
+  border: solid 1px black;
 }
 
 .profile-menu {
   display: none;
   position: absolute;
-  background: lightgray;
-  padding: 32px;
-  top: 44px;
+  background: white;
+  border-radius: 12px;
+  border: solid 1px black;
+  padding: 12px 48px;
+  top: 48px;
   right: 38px;
+  z-index: 250;
 }
 
-.profile-menu:hover {
+.profile-menu.show {
   display: block;
 }
 
-.profile-menu:hover ~ .profile-arrow {
-  display: none;
+.login-form > p {
+  margin: 0px;
+  width: 191px;
+  padding-bottom: 12px;
 }
+
+.login-btn {
+  width: 191px;
+  padding: 4px;
+  border: solid 0.5px black;
+  background-color: lightgreen;
+}
+
+
+/*MENU-TRIANGLE*/
+/*.profile-menu:after {*/
+/*  content:"";*/
+/*  position:absolute;*/
+/*  top:-15px;*/
+/*  right: 15px;*/
+/*  bottom:auto;*/
+/*  left:auto;*/
+
+/*  border-style:solid;*/
+/*  border-color:black;*/
+/*  border-width:0 15px 15px;*/
+/*  border-color:black transparent;*/
+/*}*/
+
 
 
 /*CONTENT*/
