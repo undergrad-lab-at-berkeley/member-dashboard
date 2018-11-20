@@ -71,9 +71,24 @@ class Project(models.Model):
     description = models.TextField(max_length=1000, null=True)
     start_date = models.DateField('Date Started', blank=True, null=True)
     end_date = models.DateField('Date Completed', blank=True, null=True)
-    manager = models.ManyToManyField(Member, related_name='managers')
+    managers = models.ManyToManyField(Member, related_name='managers')
     researchers = models.ManyToManyField(Member, blank=True, related_name='researchers')
     blog_post = models.URLField(null=True, blank=True)
+    in_progress = models.BooleanField(default=True)
+
+    @property
+    def status(self):
+      if self.in_progress:
+        return 'In Progress'
+      else:
+        return 'Completed'
+
+    @property
+    def short_description(self):
+        if len(self.description) >= 103:
+          return f'{self.description[:100]}...'
+        else:
+          return self.description
 
     def __str__(self):
         return self.name

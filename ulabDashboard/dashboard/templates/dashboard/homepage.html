@@ -2,7 +2,9 @@
 
 {% block content %}
 
-    <h1 class='content-title'> Announcements </h1>
+    <div class='content-header'>
+      <h1 class='content-title'> Announcements </h1>
+    </div>
     <div class='announcment-container'>
       {% for msg in announcments %}
           <div class='announcment-entry'>
@@ -15,7 +17,9 @@
       {% endfor %}
     </div>
 
-    <h1 class='content-title'> Calendar </h1>
+    <div class='content-header'>
+      <h1 class='content-title'> Calendar </h1>
+    </div>
     <div class='homepage-calendar'>
       <iframe src="https://calendar.google.com/calendar/embed?src=17f15hlh7tuk2a4rtqa1odu9sk%40group.calendar.google.com&ctz=America%2FLos_Angeles" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
     </div>

@@ -7,4 +7,20 @@
     <p class='msg-description medium-text'>Status: {{ profile.status }}</p>
     <p class='msg-description medium-text'>About Me: <br> &emsp;&emsp;{{ profile.bio }}</p>
 
+	<h2> Projects </h2>
+	<div class='manager-container'>
+		{% for project in profile.managers.all %}
+			<a href="{% url 'project' proj_id=project.id %}" class='project-tile'>
+				<span class='project-tile-name'> {{ project.name }} </span>
+				<p class='project-tile-position'> Manager </p>
+			</a>
+    	{% endfor %}
+		{% for project in profile.researchers.all %}
+			<a href="{% url 'project' proj_id=project.id %}" class='project-tile'>
+				<span class='project-tile-name'> {{ project.name }} </span>
+				<p class='project-tile-position'> Researcher </p>
+			</a>
+    	{% endfor %}
+	</div>
+
 {% endblock %}

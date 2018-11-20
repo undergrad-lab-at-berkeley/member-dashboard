@@ -12,6 +12,7 @@ a {
   text-decoration: none;
 }
 
+
 /*HEADER*/
 .layout-header {
   position: fixed;
@@ -130,7 +131,7 @@ a {
   background: white;
   border-radius: 12px;
   border: solid 1px black;
-  padding: 12px 48px;
+  padding: 24px 48px;
   top: 48px;
   right: 38px;
   z-index: 250;
@@ -140,19 +141,39 @@ a {
   display: block;
 }
 
+.login-form {
+  margin: 0px;
+}
+
 .login-form > p {
   margin: 0px;
   width: 191px;
   padding-bottom: 12px;
 }
 
-.login-btn {
+.login-form > p > input {
   width: 191px;
-  padding: 4px;
-  border: solid 0.5px black;
-  background-color: lightgreen;
+  height: 24px;
 }
 
+.login-btn {
+  width: 191px;
+  height: 28px;
+  padding: 4px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background-color: #4CAF50;
+}
+
+.login-btn:hover {
+  background-color: #3e8e41;
+}
+
+.request-btn {
+  float: right;
+  font-size: 10pt;
+}
 
 /*MENU-TRIANGLE*/
 /*.profile-menu:after {*/
@@ -180,10 +201,25 @@ a {
   z-index: 1;
 }
 
+.content-header {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgb(0,0,0,1);
+}
+
 .content-title {
   font-size: 32pt;
   font-weight: 100;
-  border-bottom: 1px solid rgb(0,0,0,0.1);
+  margin: 0px;
+  /*border-bottom: 1px solid rgb(0,0,0,0.1);*/
+}
+
+.content-search {
+  margin: auto 32px;
+  height: 32px;
+  width: 256px;
+  font-size: 12pt;
 }
 
 /*ANNOUNCEMENTS*/
@@ -222,4 +258,82 @@ a {
 
 .medium-text {
   line-height: 1.5;
+}
+
+/* PROJECT */
+.manager-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.member-tile {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 24px;
+  text-decoration: none;
+}
+
+.member-tile:hover {
+  animation: float 1s linear infinite;
+}
+
+.member-tile-img {
+  height: 128px;
+  width: 128px;
+}
+
+.member-tile-name {
+  font-size: 12pt;
+  margin: auto;
+  padding-top: 6px;
+  text-decoration: none;
+  color: black;
+}
+
+/* PROFILE PAGE */
+.project-tile {
+  width: 256px;
+  height: 128px;
+  background: orange;
+  margin: 12px 24px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  border-radius: 12px;
+  color: black;
+}
+
+.project-tile:hover {
+  animation: float 1s linear infinite;
+}
+
+.project-tile > * {
+  margin: auto;
+}
+
+.project-tile-name {
+  font-size: 18pt;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.project-tile-position {
+  margin-top: 4px;
+}
+
+
+
+
+/*ANIMATIONS*/
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-2px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
 }

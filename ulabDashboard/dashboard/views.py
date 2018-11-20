@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from .models import Announcement, Member
+from .models import Announcement, Member, Project
 from django.contrib.auth.forms import AuthenticationForm
 # form = AuthenticationForm()
 
@@ -37,3 +37,18 @@ def people_directory(request):
       'form': AuthenticationForm()
     }
     return render(request, 'dashboard/people_directory.html', context)
+
+def project(request, proj_id):
+    project = get_object_or_404(Project, pk=proj_id)
+    context = {
+      'project': project,
+      'form': AuthenticationForm()
+    }
+    return render(request, 'dashboard/project.html', context)
+
+def projects_directory(request):
+    context = {
+      'projects': Project.objects.all(),
+      'form': AuthenticationForm()
+    }
+    return render(request, 'dashboard/projects_directory.html', context)
