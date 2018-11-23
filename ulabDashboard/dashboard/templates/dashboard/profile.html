@@ -13,12 +13,14 @@
 			<a href="{% url 'project' proj_id=project.id %}" class='project-tile'>
 				<span class='project-tile-name'> {{ project.name }} </span>
 				<p class='project-tile-position'> Manager </p>
+				<p class='project-tile-description'> {{ project.short_description }}</p>
 			</a>
     	{% endfor %}
 		{% for project in profile.researchers.all %}
 			<a href="{% url 'project' proj_id=project.id %}" class='project-tile'>
-				<span class='project-tile-name'> {{ project.name }} </span>
+				<span class='project-tile-name' data-hover='testing testing'> {{ project.name }} </span>
 				<p class='project-tile-position'> Researcher </p>
+				<p class='project-tile-description'> {{ project.short_description }}</p>
 			</a>
     	{% endfor %}
 	</div>

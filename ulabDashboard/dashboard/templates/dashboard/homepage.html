@@ -11,7 +11,7 @@
             <span class='msg-date'> {{ msg.date_posted }} </span>
             <a href="{% url 'announcement' announcement_id=msg.id %}"> <span class='msg-title'>{{ msg.title }}</span> </a>
             <p class='msg-description'>&emsp;&emsp;{{ msg.short_description }}
-              <a class='msg-more' href="{% url 'announcement' announcement_id=msg.id %}">Read More</a> </br>
+              <a class='msg-more' href="{% url 'announcement' announcement_id=msg.id %}"> Read More</a> </br>
             </p>
           </div>
       {% endfor %}
