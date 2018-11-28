@@ -12,12 +12,12 @@ import pdb
 
 # DECORATORS
 def check_login(func):
-    def new_func(request):
+    def new_func(request, *args, **kwargs):
         result = handle_login(request)
         if result[0]:
           return result[1]
         else:
-          return func(request)
+          return func(request, *args, **kwargs)
     return new_func
 
 
@@ -30,6 +30,7 @@ def homepage(request):
     }
     return render(request, 'dashboard/homepage.html', context)
 
+@check_login
 def announcement(request, announcement_id):
     announcement = get_object_or_404(Announcement, pk=announcement_id)
     context = {
@@ -38,6 +39,7 @@ def announcement(request, announcement_id):
     }
     return render(request, 'dashboard/announcement.html', context)
 
+@check_login
 def profile(request, username):
     auth_user = get_object_or_404(User, username=username)
     context = {
@@ -46,6 +48,7 @@ def profile(request, username):
     }
     return render(request, 'dashboard/profile.html', context)
 
+@check_login
 def people_directory(request):
     search_val = request.GET.get('search', '')
 
@@ -62,6 +65,7 @@ def people_directory(request):
     }
     return render(request, 'dashboard/people_directory.html', context)
 
+@check_login
 def project(request, proj_id):
     project = get_object_or_404(Project, pk=proj_id)
     context = {
@@ -70,6 +74,7 @@ def project(request, proj_id):
     }
     return render(request, 'dashboard/project.html', context)
 
+@check_login
 def projects_directory(request):
     search_val = request.GET.get('search', '')
 
