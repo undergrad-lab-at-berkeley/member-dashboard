@@ -6,11 +6,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="lol someone make sure to change me later">
         <meta name="google" value="notranslate">
+        <link rel="icon" href="{% static 'logos/logo_general.png' %}">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway" />
         <link rel="stylesheet" type="text/css" href="{% static 'dashboard/style.css' %}?{% now "U" %}">
         <script type="text/javascript" src="{% static 'dashboard/jquery-3.3.1.min.js' %}"> </script>
     </head>
     <body>
+        <div href="#" class='click-overlay'></div>
+        <div class='login-container'>
+            <span class='login-title'>
+              <img class='login-logo' src="{% static 'logos/logo_general.png' %}">
+              <span class='login-title-text'> Login </span>
+            </span>
+            <form class="login-form" method="post", action="{{ request.path }}">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button class="login-btn" type="submit"> Login </button>
+            </form>
+              <a class="login-forgot" href="#"> Forgot Password? </a>
+              <span class="login-request"> New to ULAB? <a href="#"> Request an account </a></span>
+        </div>
+
         <div class='layout-header'>
           <div class='header-title'>
             <img class='header-logo' src="{% static 'logos/logo_general.png' %}">
@@ -18,24 +34,29 @@
           </div>
           <div class='header-login'>
             {% if user.is_authenticated  %}
-                <p> Welcome, {{ user.username }}! </p>
-                <!--<a href="{% url 'logout' %}">Logout</a>-->
+                {% if user.first_name %}
+                  <p> Welcome, <a class='name-link' href="{% url 'profile' username=user.username %}">{{ user.first_name }}</a>! </p>
+                {% else %}
+                  <p> Welcome, <a class='name-link' href="{% url 'profile' username=user.username %}">{{ user.username }}</a>! </p>
+                {% endif %}
             {% else %}
                 <p> Welcome, Guest! </p>
-                <!--<a href="{%url 'login' %}">Login</a>-->
             {% endif %}
             <div class='profile-menu-btn'>
-              <img class='profile-arrow' src="{% static 'dashboard/images/home-arrow.png' %}">
+              <!--<img class='profile-arrow' src="{% static 'dashboard/images/menu-icon.png' %}">-->
+              <button class='profile-arrow'> </button>
               <div class='profile-menu'>
                 {% if user.is_authenticated  %}
+                  <a href="#">Edit Profile</a>
+                  <a href="{% url 'admin:dashboard_announcement_add' %}">Create Announcment</a>
+                  <a href="{% url 'admin:index' %}">Admin Console</a>
+                  <a href="https://ulab.berkeley.edu/">Landing Page</a>
                   <a href="{% url 'logout' %}">Logout</a>
                 {% else %}
-                  <form class="login-form" method="post", action="{% url 'login' %}">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="login-btn" type="submit"> Login </button>
-                  </form>
-                    <a class="request-btn" href="#"> Request an account </a>
+                  <!--<a class="show-login-btn" href="#Login">Login/Sign Up</a>-->
+                  <!--<a href="{% url 'admin:index' %}">Admin Console</a>-->
+                  <a href="https://ulab.berkeley.edu/">Landing Page</a>
+                  <a class="show-login-btn" href="#Login">Login/Sign Up</a>
                 {% endif %}
               </div>
             </div>
@@ -48,6 +69,13 @@
             <a class='nav-link' href="{% url 'people' %}"> People </a>
             <a class='nav-link' href="{% url 'projects' %}"> Research Projects </a>
             <a class='nav-link' href='#'> Labs </a>
+            {% if user.is_authenticated  %}
+            <br> <br>
+            <a class='nav-link' href="{% url 'profile' username=user.username %}">My Profile</a>
+            <a class='nav-link' href="{% url 'people' %}"> My Projects </a>
+            <a class='nav-link' href="{% url 'projects' %}"> My Groups </a>
+            {% else %}
+            {% endif %}
           </div>
           <div class='nav-footer'>
             <a class='footer-link'> Developed by ATG </a>

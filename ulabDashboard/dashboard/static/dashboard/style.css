@@ -12,6 +12,31 @@ a {
   text-decoration: none;
 }
 
+button {
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/*OVERLAY*/
+.click-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 300;
+  background: rgb(0,0,0,0.3);
+  display: none;
+}
+
+.click-overlay.show {
+  display: block;
+}
 
 /*HEADER*/
 .layout-header {
@@ -52,7 +77,7 @@ a {
 }
 
 .header-login {
-  padding-right: 32px;
+  /*padding-right: 32px;*/
   display: flex;
   flex-direction: row;
 }
@@ -89,7 +114,7 @@ a {
 }
 
 .navbar {
-  padding: 32px;
+  padding: 32px 0px;
 
   display: flex;
   flex-direction: column;
@@ -104,42 +129,57 @@ a {
 .nav-link {
   font-size: 12pt;
   color: rgb(0,0,0,0.8);
-  padding: 12px 6px;
+  padding: 12px 38px;
 }
 
 .nav-link:hover {
-  transform: translateX(10px) scale(1.1);
+  /*transform: translateX(6px);*/
+  background: rgb(0,0,0,0.1);
 }
 
-
-/*PROFILE MENU*/
-.profile-arrow {
-  height: 16px;
-  width: 16px;
-  padding: 4px;
-  border-radius: 10px;
-  border: solid 1px rgb(0,0,0,0);
-  z-index: 250;
-}
-
-.profile-arrow:hover {
-  border: solid 1px black;
-}
-
-.profile-menu {
-  display: none;
-  position: absolute;
+/*LOGIN FORM*/
+.login-container {
+  position: fixed;
+  margin: auto;
+  height: 50vh;
+  width: 50vw;
+  padding: 0px;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  z-index: 350;
   background: white;
   border-radius: 12px;
-  border: solid 1px black;
-  padding: 24px 48px;
-  top: 48px;
-  right: 38px;
-  z-index: 250;
+  box-shadow: 0px 0px 10px grey;
+  display: none;
 }
 
-.profile-menu.show {
-  display: block;
+.login-container.show {
+  display: flex;
+  flex-direction: column;
+  /*align-items: center;*/
+  justify-content: center;
+}
+
+.login-container.show > * {
+  padding-left: 20%;
+}
+
+.login-logo {
+  width: 36px;
+  height: 36px;
+  padding-right: 8px;
+}
+
+.login-title {
+  /*font-weight: ;*/
+  font-size: 24pt;
+  padding-bottom: 12px;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .login-form {
@@ -148,49 +188,151 @@ a {
 
 .login-form > p {
   margin: 0px;
-  width: 191px;
-  padding-bottom: 12px;
+  /*width: 191px;*/
+  padding-bottom: 18px;
+}
+
+.login-form > p > label {
+  display: none;
 }
 
 .login-form > p > input {
-  width: 191px;
-  height: 24px;
+  padding-left: 6px;
+  height: 40px;
+  width: 312px;
+  font-size: 11pt;
+  border: solid 1px lightgray;
+  border-radius: 4px;
 }
 
 .login-btn {
-  width: 191px;
-  height: 28px;
+  width: 168px;
+  height: 36px;
   padding: 4px;
   cursor: pointer;
   border: none;
+  border-radius: 6px;
   color: white;
-  background-color: #4CAF50;
+  font-size: 12pt;
+  /*background-color: #4CAF50;*/
+  background: rgb(50, 150, 255, 1);
 }
 
 .login-btn:hover {
-  background-color: #3e8e41;
+  /*background-color: #3e8e41;*/
+  background: rgb(0, 100, 255, 1);
 }
 
-.request-btn {
-  float: right;
-  font-size: 10pt;
+.login-forgot {
+  padding-top: 4px;
 }
 
-/*MENU-TRIANGLE*/
-/*.profile-menu:after {*/
-/*  content:"";*/
-/*  position:absolute;*/
-/*  top:-15px;*/
-/*  right: 15px;*/
-/*  bottom:auto;*/
-/*  left:auto;*/
+.login-request {
+  padding-top: 16px;
+}
 
-/*  border-style:solid;*/
-/*  border-color:black;*/
-/*  border-width:0 15px 15px;*/
-/*  border-color:black transparent;*/
-/*}*/
+/*PROFILE MENU*/
+.header-login > p {
+  padding-right: 24px;
+}
 
+.profile-menu-btn {
+  height: 64px;
+  width: 64px;
+  padding: 0px;
+  border-left: solid 1px rgb(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.profile-menu-btn:hover {
+  background: rgb(0,0,0,0.01);
+}
+
+.profile-arrow {
+  height: 18px;
+  width: 24px;
+  z-index: 250;
+
+  background: transparent;
+  border: none;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  
+  color: black;
+  font-size: 0;
+  
+  display: flex;
+}
+
+.profile-arrow::before, .profile-arrow::after {
+    content: '';
+    display: block;
+    width: 23px;
+    height: 0px;
+    
+    position: absolute;
+    margin: auto;
+    
+    transform: translate(-6px, -25%);
+    transition: transform 0.1s ease-in-out;
+    border-bottom: solid 1px black;
+    background: transparent;
+}
+
+.profile-arrow.is-active {
+  border-color: transparent;
+}
+
+.profile-arrow.is-active::before {
+  transform: translate(-6px, -50%) rotate(45deg);
+  border-color: red;
+}
+
+.profile-arrow.is-active::after {
+  transform: translate(-6px, -50%) rotate(-45deg);
+  border-color: red;
+}
+
+.profile-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  border-radius: 4px;
+  border: solid 1px rgb(0,0,0,0.3);
+  top: 64px;
+  right: 32px;
+  /*padding: 24px 48px;*/
+  /*top: 48px;*/
+  /*right: 38px;*/
+  z-index: 250;
+}
+
+.profile-menu.show {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-menu > a {
+  padding: 12px 64px;
+  border-bottom: solid 1px rgb(0,0,0,0.05);
+  color: black;
+}
+
+.profile-menu > a:hover {
+  /*background: rgb(100, 150, 255, 0.4);*/
+  background: rgb(50, 150, 255, 1);
+  color: white;
+}
+
+.name-link {
+  color: black;
+}
+.name-link:hover {
+  text-decoration: underline;
+}
 
 
 /*CONTENT*/
@@ -267,12 +409,12 @@ a {
 .msg-description {
   margin: 0px;
   padding-top: 6px;
-  width: 50%;
+  width: 60%;
   min-width: 420px;
 }
 
 .msg-more {
-  color: rgb(0,0,255,0.5);
+  color: rgb(0,0,255,0.8);
   text-decoration: underline;
 }
 
@@ -320,11 +462,12 @@ a {
 .project-tile {
   width: 256px;
   height: 128px;
-  background: orange;
+  /*background: orange;*/
   margin: 12px 24px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  background: rgb(255,175,0,0.8);
   border-radius: 12px;
   color: black;
   overflow: hidden;
