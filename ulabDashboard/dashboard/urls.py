@@ -9,7 +9,8 @@ urlpatterns = [
     path('people/<slug:username>/', views.profile, name='profile'),
     path('people/', views.people_directory, name='people'),
     path('projects/<int:proj_id>/', views.project, name='project'),
-    path('projects/', views.projects_directory, name='projects')
+    path('projects/', views.projects_directory, name='projects'),
+    path('people/<slug:username>/edit', views.edit_profile, name='edit_profile'),
 ]
 
 #django.contrib.auth.urls includes registration views

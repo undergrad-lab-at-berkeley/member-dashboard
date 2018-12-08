@@ -5,7 +5,8 @@
 	<div class='content-header'>
 	    <h1 class='content-title'> People </h1>
 	    <form class='content-search-form' action="{% url 'people' %}" method="GET">
-    		<input class='content-search' type="text" placeholder="Search.." name="search">
+    		<input class='content-search' type="text"
+    		placeholder="Search.." value="{{ search_val }}" name="search">
 	    </form>
 	</div>
       {% for person in people %}

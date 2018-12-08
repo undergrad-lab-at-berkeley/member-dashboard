@@ -7,6 +7,9 @@ from django.db.models.functions import Concat
 from django.contrib.auth import authenticate, login
 from .forms import CustomAuthForm as AuthenticationForm
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+
 
 import pdb
 
@@ -61,6 +64,7 @@ def people_directory(request):
 
     context = {
       'people': people,
+      'search_val': search_val,
       'form': AuthenticationForm()
     }
     return render(request, 'dashboard/people_directory.html', context)
@@ -87,6 +91,20 @@ def projects_directory(request):
       'form': AuthenticationForm()
     }
     return render(request, 'dashboard/projects_directory.html', context)
+
+@login_required
+def edit_profile(request, username):
+    auth_user = request.user
+
+    if auth_user.username != username:
+      return HttpResponseRedirect('/dashboard/people/')
+
+    context = {
+      'profile': auth_user.member,
+      'form': AuthenticationForm()
+    }
+    return render(request, 'dashboard/profile.html', context)
+
 
 
 
