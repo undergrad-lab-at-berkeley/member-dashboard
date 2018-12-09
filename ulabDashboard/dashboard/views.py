@@ -103,7 +103,7 @@ def edit_profile(request, username):
       'profile': auth_user.member,
       'form': AuthenticationForm()
     }
-    return render(request, 'dashboard/profile.html', context)
+    return render(request, 'dashboard/edit_profile.html', context)
 
 
 
