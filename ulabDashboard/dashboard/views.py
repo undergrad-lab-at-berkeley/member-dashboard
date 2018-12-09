@@ -6,11 +6,14 @@ from django.db.models import Value
 from django.db.models.functions import Concat
 from django.contrib.auth import authenticate, login
 from .forms import CustomAuthForm as AuthenticationForm
+from .forms import EditUserForm, EditMemberForm, CreateAnnouncementForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
+from datetime import datetime
 import pdb
 
 # DECORATORS
@@ -27,8 +30,9 @@ def check_login(func):
 # VIEWS
 @check_login
 def homepage(request):
+    mostRecent = Announcement.objects.all().order_by('-date_posted')[:3]
     context = {
-      'announcments': Announcement.objects.all(),
+      'announcments': mostRecent,
       'form': AuthenticationForm()
     }
     return render(request, 'dashboard/homepage.html', context)
@@ -92,20 +96,60 @@ def projects_directory(request):
     }
     return render(request, 'dashboard/projects_directory.html', context)
 
-@login_required
+# @login_required
 def edit_profile(request, username):
     auth_user = request.user
+    profile = auth_user.member
 
-    if auth_user.username != username:
+    if auth_user.username != username or not auth_user.is_authenticated:
       return HttpResponseRedirect('/dashboard/people/')
 
+    if request.method == 'POST':
+      userForm = EditUserForm(request.POST, instance=auth_user, prefix="userForm")
+      memberForm = EditMemberForm(request.POST, instance=profile, prefix="memberForm")
+      if userForm.is_valid() and memberForm.is_valid():
+        auth_user.save()
+        profile.save()
+
+    else:
+      userForm = EditUserForm(instance=auth_user, prefix="userForm")
+      memberForm = EditMemberForm(instance=profile, prefix="memberForm")
+
     context = {
-      'profile': auth_user.member,
+      'profile': profile,
+      'userForm': userForm,
+      'memberForm': memberForm,
       'form': AuthenticationForm()
     }
     return render(request, 'dashboard/edit_profile.html', context)
 
+def create_announcement(request):
+    user = request.user
+    profile = user.member
+    
+    if not user.is_staff:
+      return HttpResponseRedirect('/dashboard/people/')
 
+    if request.method == 'POST':
+      announcementForm = CreateAnnouncementForm(request.POST, prefix="announcementForm")
+      if announcementForm.is_valid():
+        newAnnouncement = announcementForm.save(commit=False)
+        newAnnouncement.author = profile
+        newAnnouncement.date_posted = datetime.now()
+        newAnnouncement.save()
+        return HttpResponseRedirect(reverse('announcement', kwargs={
+          'announcement_id': newAnnouncement.id
+          }))
+
+    else:
+      announcementForm = CreateAnnouncementForm(request.POST, prefix="announcementForm")
+
+    context = {
+      'profile': profile,
+      'announcementForm': announcementForm,
+      'form': AuthenticationForm()
+    }
+    return render(request, 'dashboard/create_announcement.html', context)
 
 
 # HELPERS

@@ -3,8 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.forms.widgets import PasswordInput, TextInput
 from django.forms import ModelForm
 from .models import Announcement, Member, Project
-from django.conf import settings
-AUTH_USER_MODEL = settings.AUTH_USER_MODEL
+from django.contrib.auth import get_user_model
+
 
 class CustomAuthForm(AuthenticationForm):
   username = forms.CharField(
@@ -21,4 +21,21 @@ class CustomAuthForm(AuthenticationForm):
 class EditMemberForm(ModelForm):
 	class Meta:
 		model = Member
-		fields = ["bio", "linkedin", "github", "website"]
+		fields = ["active", "about", "linkedin", "github", "website"]
+
+class EditUserForm(ModelForm):
+	class Meta:
+		model = get_user_model()
+		fields = ["email"]
+		help_texts = {
+      'email': None
+		}
+
+class CreateAnnouncementForm(ModelForm):
+  class Meta:
+    model = Announcement
+    fields = ["title", "description"]
+    help_texts = {
+      "title": None,
+      "description": None
+    }

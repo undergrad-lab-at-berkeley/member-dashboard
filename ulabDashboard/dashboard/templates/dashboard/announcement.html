@@ -3,6 +3,8 @@
 {% block content %}
 
     <h1 class='content-title'> {{ msg.title }} </h1>
+    <p class='msg-description medium-text'>Author: {{ msg.author.full_name }}</p>
+    <p class='msg-description medium-text'>Posted: {{ msg.date_posted }}</p>
     <p class='msg-description medium-text'>&emsp;&emsp;{{ msg.description }}</p>
 
 {% endblock %}

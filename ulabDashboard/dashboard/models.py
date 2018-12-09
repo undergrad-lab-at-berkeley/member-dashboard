@@ -14,7 +14,7 @@ class Member(models.Model):
     user = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     join_date = models.DateField('Date Joined', default=date.today)
     active = models.BooleanField(default=True)
-    bio = models.TextField(max_length=300, blank=True, default='')
+    about = models.TextField(max_length=750, blank=True, default='')
     linkedin = models.URLField(null=True, blank=True)
     github = models.URLField(null=True, blank=True)
     website = models.URLField(null=True, blank=True)
@@ -34,7 +34,10 @@ class Member(models.Model):
         return 'Inactive'
 
     def __str__(self):
+      if self.user and self.user.username:
         return self.user.username
+      else:
+        return 'MEMBER OBJECT HAS NO OBJECT USER'
 
 @receiver(post_save, sender=AUTH_USER_MODEL)
 def create_user_member(sender, instance, created, **kwargs):

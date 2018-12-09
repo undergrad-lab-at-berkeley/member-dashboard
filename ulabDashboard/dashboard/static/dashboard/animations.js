@@ -1,5 +1,8 @@
 console.log('hey');
 // $('.profile-menu').toggleClass('show');
+$('<br />').insertBefore('#id_memberForm-about');
+$('<br />').insertBefore('#id_announcementForm-description');
+
 
 $('.profile-menu-btn').on('click', function() {
   $('.profile-menu').toggleClass('show');

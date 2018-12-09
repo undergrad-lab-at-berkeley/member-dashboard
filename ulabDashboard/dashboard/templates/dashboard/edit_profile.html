@@ -2,28 +2,16 @@
 
 {% block content %}
 
-    <!-- <h1 class='content-title'> {{ profile.full_name }}</h1> -->
-    <h1 class='content-title'> Edit :() </h1>
-    <p class='msg-description medium-text'>Joined: {{ profile.join_date }}</p>
-    <p class='msg-description medium-text'>Status: {{ profile.status }}</p>
-    <p class='msg-description medium-text'>About Me: <br> &emsp;&emsp;{{ profile.bio }}</p>
-
-	<h2> Projects </h2>
-	<div class='manager-container'>
-		{% for project in profile.managers.all %}
-			<a href="{% url 'project' proj_id=project.id %}" class='project-tile'>
-				<span class='project-tile-name'> {{ project.name }} </span>
-				<p class='project-tile-position'> Manager </p>
-				<p class='project-tile-description'> {{ project.short_description }}</p>
-			</a>
-    	{% endfor %}
-		{% for project in profile.researchers.all %}
-			<a href="{% url 'project' proj_id=project.id %}" class='project-tile'>
-				<span class='project-tile-name' data-hover='testing testing'> {{ project.name }} </span>
-				<p class='project-tile-position'> Researcher </p>
-				<p class='project-tile-description'> {{ project.short_description }}</p>
-			</a>
-    	{% endfor %}
-	</div>
+    <h1 class='content-title'> Edit Profile </h1> <br>
+    <form action="{{ request.path }}" method="post" class="edit-profile-form">
+        <p>
+          <label>Username:</label>
+          <input type="text" name="username-placeholder" value="{{ profile.user.username }}" maxlength="150" disabled>
+        </p>
+        {% csrf_token %}
+        {{ userForm.as_p }}
+        {{ memberForm.as_p }}
+        <input type="submit" value="Save" class="save-btn">
+    </form>
 
 {% endblock %}
