@@ -39,12 +39,29 @@ def homepage(request):
 
 @check_login
 def announcement(request, announcement_id):
-    announcement = get_object_or_404(Announcement, pk=announcement_id)
+    try:
+        announcement = Announcement.objects.get(pk=announcement_id)
+    except Announcement.DoesNotExist:
+        return HttpResponseRedirect(reverse('all_announcements'))
+
+    user_is_author = False
+    if request.user.member and request.user.member == announcement.author:
+      user_is_author = True
     context = {
       'msg': announcement,
+      'user_is_author': user_is_author,
       'form': AuthenticationForm()
     }
     return render(request, 'dashboard/announcement.html', context)
+
+@check_login
+def all_announcements(request):
+    mostRecent = Announcement.objects.all().order_by('-date_posted')
+    context = {
+      'announcments': mostRecent,
+      'form': AuthenticationForm()
+    }
+    return render(request, 'dashboard/all_announcements.html', context)
 
 @check_login
 def profile(request, username):
@@ -123,12 +140,12 @@ def edit_profile(request, username):
     }
     return render(request, 'dashboard/edit_profile.html', context)
 
-def create_announcement(request):
+def create_announcement(request, ):
     user = request.user
     profile = user.member
     
     if not user.is_staff:
-      return HttpResponseRedirect('/dashboard/people/')
+        return HttpResponseRedirect(reverse('all_announcements'))
 
     if request.method == 'POST':
       announcementForm = CreateAnnouncementForm(request.POST, prefix="announcementForm")
@@ -151,6 +168,40 @@ def create_announcement(request):
     }
     return render(request, 'dashboard/create_announcement.html', context)
 
+def edit_announcement(request, announcement_id):
+    try:
+        announcement = Announcement.objects.get(pk=announcement_id)
+    except Announcement.DoesNotExist:
+        return HttpResponseRedirect(reverse('all_announcements'))
+    
+    user = request.user
+    profile = user.member
+    
+    if not user.is_staff or announcement.author != profile:
+        return HttpResponseRedirect(reverse('announcement', kwargs={
+          'announcement_id': announcement.id
+        }))
+
+    if request.method == 'POST':
+      if 'delete-announcement' in request.POST.keys():
+        announcement.delete()
+        return HttpResponseRedirect(reverse('all_announcements'))
+      else:
+        announcementForm = CreateAnnouncementForm(request.POST, instance=announcement, prefix="announcementForm")
+        if announcementForm.is_valid():
+          announcementForm.save()
+          return HttpResponseRedirect(reverse('announcement', kwargs={
+            'announcement_id': announcement.id
+            }))
+    else:
+      announcementForm = CreateAnnouncementForm(instance=announcement, prefix="announcementForm")
+
+    context = {
+      'profile': profile,
+      'announcementForm': announcementForm,
+      'form': AuthenticationForm()
+    }
+    return render(request, 'dashboard/edit_announcement.html', context)
 
 # HELPERS
 def handle_login(request):

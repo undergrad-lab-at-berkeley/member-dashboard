@@ -5,6 +5,15 @@
     <h1 class='content-title'> {{ msg.title }} </h1>
     <p class='msg-description medium-text'>Author: {{ msg.author.full_name }}</p>
     <p class='msg-description medium-text'>Posted: {{ msg.date_posted }}</p>
-    <p class='msg-description medium-text'>&emsp;&emsp;{{ msg.description }}</p>
+    <p class='msg-description medium-text'>&emsp;&emsp;{{ msg.description | linebreaks }}</p>
+    <br>
+    
+    {% if user_is_author  %}
+    <div class="announcement-btns">
+      <form method="GET" action="{% url 'edit_announcement' announcement_id=msg.id %}">
+        <input class="save-btn" type="submit" value="Edit">
+      </form>
+    </div>
+    {% endif %}
 
 {% endblock %}
