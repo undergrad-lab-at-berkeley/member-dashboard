@@ -127,6 +127,9 @@ def edit_profile(request, username):
       if userForm.is_valid() and memberForm.is_valid():
         auth_user.save()
         profile.save()
+        return HttpResponseRedirect(reverse('profile', kwargs={
+          'username': auth_user.username
+        }))
 
     else:
       userForm = EditUserForm(instance=auth_user, prefix="userForm")

@@ -650,4 +650,14 @@ form > .errorlist {
 .content-container > p {
   width: 60%;
   min-width: 420px;
+  margin: 0px;
+}
+
+.about-container {
+  margin-left: 36px;
+  padding: 0px;
+}
+
+.about-container > p {
+  margin: 0px;
 }

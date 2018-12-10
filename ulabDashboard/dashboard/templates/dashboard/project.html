@@ -7,7 +7,9 @@
     <p class='msg-description medium-text'>Lab: {{ project.lab.name }}</p>
     <p class='msg-description medium-text'>Started: {{ project.start_date }}</p>
     <p class='msg-description medium-text'>Ended: {{ project.end_date }}</p>
-    <p class='msg-description medium-text'>Description: <br> &emsp;&emsp;{{ project.description }}</p>
+    <p class='msg-description medium-text'>Description:</p>
+    <div class='msg-description medium-text about-container'>{{ project.description | linebreaks }}</div>
+
 	</br>
 
 	<h2> Lab Managers </h2>

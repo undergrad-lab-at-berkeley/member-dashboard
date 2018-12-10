@@ -5,7 +5,8 @@
     <h1 class='content-title'> {{ profile.full_name }}</h1>
     <p class='msg-description medium-text'>Joined: {{ profile.join_date }}</p>
     <p class='msg-description medium-text'>Status: {{ profile.status }}</p>
-    <p class='msg-description medium-text'>About Me: <br> &emsp;&emsp;{{ profile.about }}</p>
+    <p class='msg-description medium-text'>About Me: </p>
+    <div class='msg-description medium-text about-container'>{{ profile.about | linebreaks }}</div>
 
 	<h2> Projects </h2>
 	<div class='manager-container'>
