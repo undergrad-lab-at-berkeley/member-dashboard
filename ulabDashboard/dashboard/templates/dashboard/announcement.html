@@ -1,0 +1,24 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block content %}
+
+    <h1 class='content-title'> {{ msg.title }} </h1>
+    <p class='msg-description medium-text'>Author: {{ msg.author.full_name }}</p>
+    <p class='msg-description medium-text'>Posted: {{ msg.date_posted }}</p>
+    {% if user_is_author  %}
+      <p class='msg-description medium-text'>
+        <a href="{% url 'edit_announcement' announcement_id=msg.id %}" class='edit-link'>
+          Edit Announcment</a>
+    {% endif %}
+    <br/> <br/>
+    <p class='msg-description medium-text announcement-text'>{{ msg.description | linebreaksbr }}</p>
+
+    <!--{% if user_is_author  %}-->
+    <!--<div class="announcement-btns">-->
+    <!--  <form method="GET" action="{% url 'edit_announcement' announcement_id=msg.id %}">-->
+    <!--    <input class="save-btn" type="submit" value="Edit">-->
+    <!--  </form>-->
+    <!--</div>-->
+    <!--{% endif %}-->
+
+{% endblock %}

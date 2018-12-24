@@ -1,0 +1,55 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block content %}
+
+	<div class='content-header'>
+	    <h1 class='content-title'> My Groups </h1>
+	</div>
+	
+	<h2 style="text-decoration: underline;"> Mentoring </h2>
+      {% for group in profile.group_mentors.all %}
+        {% if group.active  %}
+          <div class='announcment-entry'>
+            <a href="{% url 'group' group_id=group.id %}"> <span class='msg-title'>
+              {{ group.name }}</span> </a>
+            <p class='msg-description'>&emsp;&emsp;{{ group.lab.name }}
+            </p>
+          </div>
+        {% endif %}
+      {% endfor %}
+  <br/>
+  <h2 style="text-decoration: underline;"> Participating </h2>
+      {% for group in profile.group_members.all %}
+        {% if group.active  %}
+          <div class='announcment-entry'>
+            <a href="{% url 'group' group_id=group.id %}"> <span class='msg-title'>
+              {{ group.name }}</span> </a>
+            <p class='msg-description'>&emsp;&emsp;{{ group.lab.name }}
+            </p>
+          </div>
+        {% endif %}
+      {% endfor %}
+  <br/>
+  <h2 style="text-decoration: underline;"> Inactive Groups </h2>
+      {% for group in profile.mentors.all %}
+        {% if not group.active  %}
+          <div class='announcment-entry'>
+            <a href="{% url 'group' group_id=group.id %}"> <span class='msg-title'>
+              {{ group.name }}</span> </a>
+            <p class='msg-description'>&emsp;&emsp;{{ group.lab.name }}
+            </p>
+          </div>
+        {% endif %}
+      {% endfor %}
+      {% for group in profile.group_members.all %}
+        {% if not group.active  %}
+          <div class='announcment-entry'>
+            <a href="{% url 'group' group_id=group.id %}"> <span class='msg-title'>
+              {{ group.name }}</span> </a>
+            <p class='msg-description'>&emsp;&emsp;{{ group.lab.name }}
+            </p>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block content %}
+
+    <h1 class='content-title'> Edit Profile </h1> <br>
+    <form action="{{ request.path }}" method="post" class="edit-profile-form">
+        <p>
+          <label>Username:</label>
+          <input type="text" name="username-placeholder" value="{{ profile.user.username }}" maxlength="150" disabled>
+        </p>
+        {% csrf_token %}
+        {{ userForm.as_p }}
+        {{ memberForm.as_p }}
+        <input type="submit" value="Save" class="save-btn">
+    </form>
+
+{% endblock %}

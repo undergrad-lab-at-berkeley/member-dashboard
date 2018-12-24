@@ -1,0 +1,34 @@
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h1 class='content-title'> {{ group.name }}</h1>
+    <p class='msg-description medium-text'>Lab: {{ group.lab.name }}</p>
+    <p class='msg-description medium-text'>Description:</p>
+    <div class='msg-description medium-text about-container'>{{ group.description | linebreaks }}</div>
+
+	</br>
+
+	<h2> Mentors </h2>
+	<div class='manager-container'>
+		{% for person in group.mentors.all %}
+			<div class='member-tile'>
+			    <a href="{% url 'profile' username=person.user.username %}"> <img class='member-tile-img' src="{% static 'logos/logo_general.png' %}"> </a>
+				<a href="{% url 'profile' username=person.user.username %}" class='member-tile-name'> {{ person.full_name }} </a>
+			</div>
+    	{% endfor %}
+	</div>
+
+	<h2> Members </h2>
+	<div class='manager-container'>
+		{% for person in group.members.all %}
+			<div class='member-tile'>
+			    <a href="{% url 'profile' username=person.user.username %}"> <img class='member-tile-img' src="{% static 'logos/logo_general.png' %}"> </a>
+				<a href="{% url 'profile' username=person.user.username %}" class='member-tile-name'> {{ person.full_name }} </a>
+			</div>
+    	{% endfor %}
+	</div>
+
+
+{% endblock %}

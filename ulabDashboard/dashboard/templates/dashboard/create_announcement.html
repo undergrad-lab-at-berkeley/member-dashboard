@@ -1,0 +1,12 @@
+{% extends 'dashboard/layout.html' %}
+
+{% block content %}
+
+    <h1 class='content-title'> Create Announcement </h1> <br>
+    <form action="{{ request.path }}" method="post" class="create-announcement-form">
+        {% csrf_token %}
+        {{ announcementForm.as_p }}
+        <input type="submit" value="Post" class="save-btn">
+    </form>
+
+{% endblock %}

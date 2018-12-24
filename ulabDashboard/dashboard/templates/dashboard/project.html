@@ -1,0 +1,36 @@
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h1 class='content-title'> {{ project.name }}</h1>
+    <p class='msg-description medium-text'>Lab: {{ project.lab.name }}</p>
+    <p class='msg-description medium-text'>Started: {{ project.start_date }}</p>
+    <p class='msg-description medium-text'>Ended: {{ project.end_date }}</p>
+    <p class='msg-description medium-text'>Description:</p>
+    <div class='msg-description medium-text about-container'>{{ project.description | linebreaks }}</div>
+
+	</br>
+
+	<h2> Lab Managers </h2>
+	<div class='manager-container'>
+		{% for person in project.managers.all %}
+			<div class='member-tile'>
+			    <a href="{% url 'profile' username=person.user.username %}"> <img class='member-tile-img' src="{% static 'logos/logo_general.png' %}"> </a>
+				<a href="{% url 'profile' username=person.user.username %}" class='member-tile-name'> {{ person.full_name }} </a>
+			</div>
+    	{% endfor %}
+	</div>
+
+	<h2> Researchers </h2>
+	<div class='manager-container'>
+		{% for person in project.researchers.all %}
+			<div class='member-tile'>
+			    <a href="{% url 'profile' username=person.user.username %}"> <img class='member-tile-img' src="{% static 'logos/logo_general.png' %}"> </a>
+				<a href="{% url 'profile' username=person.user.username %}" class='member-tile-name'> {{ person.full_name }} </a>
+			</div>
+    	{% endfor %}
+	</div>
+
+
+{% endblock %}
