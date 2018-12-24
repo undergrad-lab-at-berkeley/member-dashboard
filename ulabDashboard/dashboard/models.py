@@ -50,7 +50,7 @@ def save_user_member(sender, instance, **kwargs):
 
 class Lab(models.Model):
     name = models.CharField(max_length=50)
-    directors = models.ManyToManyField(Member, related_name='lab_directors')
+    # directors = models.ManyToManyField(Member, related_name='lab_directors')
     managers = models.ManyToManyField(Member, related_name='lab_managers')
     mentors = models.ManyToManyField(Member, related_name='lab_mentors')
     members = models.ManyToManyField(Member, related_name='lab_members')
@@ -61,9 +61,17 @@ class Lab(models.Model):
 class Subgroup(models.Model):
     name = models.CharField(max_length=50)
     lab = models.ForeignKey(Lab, on_delete=models.CASCADE, null=True)
-    description = models.TextField(max_length=1000, null=True)
+    description = models.TextField(max_length=2500, null=True)
+    active = models.BooleanField(default=True)
     mentors = models.ManyToManyField(Member, related_name='group_mentors')
     members = models.ManyToManyField(Member, related_name='group_members')
+
+    @property
+    def status(self):
+      if self.active:
+        return 'Active'
+      else:
+        return 'Inactive'
 
     def __str__(self):
         return self.name
@@ -71,7 +79,7 @@ class Subgroup(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=100)
     lab = models.ForeignKey(Lab, on_delete=models.CASCADE, null=True)
-    description = models.TextField(max_length=1000, null=True)
+    description = models.TextField(max_length=2500, null=True)
     start_date = models.DateField('Date Started', blank=True, null=True)
     end_date = models.DateField('Date Completed', blank=True, null=True)
     managers = models.ManyToManyField(Member, related_name='managers')

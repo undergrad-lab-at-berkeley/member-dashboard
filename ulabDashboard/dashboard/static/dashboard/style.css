@@ -639,6 +639,15 @@ form > .errorlist {
   padding-right: 12px;
 }
 
+.edit-link {
+  color: blue;
+  cursor: pointer;
+}
+
+.edit-link:hover {
+  text-decoration: underline;
+}
+
 .delete-btn {
   background: rgb(255, 100, 100, 1);
 }

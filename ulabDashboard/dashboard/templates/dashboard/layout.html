@@ -73,8 +73,8 @@
             {% if user.is_authenticated  %}
             <br> <br>
             <a class='nav-link' href="{% url 'profile' username=user.username %}">My Profile</a>
-            <a class='nav-link' href="{% url 'people' %}"> My Projects </a>
-            <a class='nav-link' href="{% url 'projects' %}"> My Groups </a>
+            <a class='nav-link' href="{% url 'user_projects' %}"> My Projects </a>
+            <a class='nav-link' href="{% url 'user_groups' %}"> My Groups </a>
             {% else %}
             {% endif %}
           </div>

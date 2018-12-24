@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from .models import Announcement, Member, Project
+from .models import Announcement, Member, Project, Subgroup
 from django.db.models import Value
 from django.db.models.functions import Concat
 from django.contrib.auth import authenticate, login
@@ -45,7 +45,7 @@ def announcement(request, announcement_id):
         return HttpResponseRedirect(reverse('all_announcements'))
 
     user_is_author = False
-    if request.user.member and request.user.member == announcement.author:
+    if not request.user.is_anonymous and request.user.member == announcement.author:
       user_is_author = True
     context = {
       'msg': announcement,
@@ -143,7 +143,7 @@ def edit_profile(request, username):
     }
     return render(request, 'dashboard/edit_profile.html', context)
 
-def create_announcement(request, ):
+def create_announcement(request):
     user = request.user
     profile = user.member
     
@@ -205,6 +205,38 @@ def edit_announcement(request, announcement_id):
       'form': AuthenticationForm()
     }
     return render(request, 'dashboard/edit_announcement.html', context)
+
+@check_login
+def group_page(request, group_id):
+    group = get_object_or_404(Subgroup, pk=group_id)
+    context = {
+      'group': group,
+      'form': AuthenticationForm()
+    }
+    return render(request, 'dashboard/subgroup.html', context)
+
+def user_groups(request):
+    auth_user = request.user
+    if not auth_user.is_authenticated:
+      return HttpResponseRedirect('/dashboard/')
+    profile = auth_user.member
+
+    context = {
+      'profile': profile
+    }
+    return render(request, 'dashboard/user_subgroups.html', context)
+
+def user_projects(request):
+    auth_user = request.user
+    if not auth_user.is_authenticated:
+      return HttpResponseRedirect('/dashboard/')
+    profile = auth_user.member
+
+    context = {
+      'profile': profile
+    }
+    return render(request, 'dashboard/user_projects.html', context)
+
 
 # HELPERS
 def handle_login(request):
