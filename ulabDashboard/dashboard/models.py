@@ -120,3 +120,21 @@ class Announcement(models.Model):
 
     def __str__(self):
         return self.title
+
+class ExecutiveRelationship(models.Model):
+    student = models.ForeignKey(Member, on_delete=models.CASCADE)
+    lab = models.ForeignKey(Lab, on_delete=models.CASCADE)
+    position = models.CharField(max_length=100)
+    active = models.BooleanField(default=True)
+
+    SP, FA = "SPRING", "FALL"
+    semester_choices = ( (SP, "Spring"), (FA, "Fall") )
+    semester = models.CharField(max_length=32, choices=semester_choices, default=FA)
+    year = models.IntegerField(blank=True, null=True)
+
+    @property
+    def semester_active(self):
+        return f'{self.semester} {self.year}'
+
+    def __str__(self):
+        return f'{self.semester_active} {self.lab} {self.position} - {self.student.full_name}'
