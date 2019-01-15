@@ -20,5 +20,6 @@ from django.http import HttpResponseRedirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('dashboard/', include('dashboard.urls')),
-    path('', lambda r: HttpResponseRedirect('dashboard/'))
+    path('', include('landing.urls')),
+    # path('', lambda r: HttpResponseRedirect('dashboard/'))
 ]

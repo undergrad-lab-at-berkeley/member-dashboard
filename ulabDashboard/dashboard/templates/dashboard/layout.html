@@ -50,12 +50,12 @@
                   <a href="{% url 'edit_profile' username=user.username %}">Edit Profile</a>
                   <a href="{% url 'create_announcement' %}">Create Announcment</a>
                   <!--<a href="{% url 'admin:index' %}">Admin Console</a>-->
-                  <a href="https://ulab.berkeley.edu/">Landing Page</a>
+                  <a href="{% url 'frontpage' %}">Landing Page</a>
                   <a href="{% url 'logout' %}">Logout</a>
                 {% else %}
                   <!--<a class="show-login-btn" href="#Login">Login/Sign Up</a>-->
                   <!--<a href="{% url 'admin:index' %}">Admin Console</a>-->
-                  <a href="https://ulab.berkeley.edu/">Landing Page</a>
+                  <a href="{% url 'frontpage' %}">Landing Page</a>
                   <a class="show-login-btn" href="#Login">Login/Sign Up</a>
                 {% endif %}
               </div>

@@ -1,0 +1,42 @@
+{% extends 'landing/layout.html' %}
+{% load static %}
+
+{% block content %}
+
+	<div class='content-header'>
+		<h1 class='content-title'> Welcome to Research </h1>
+	</div>
+
+	<div class='content-header'>
+     	<p class='content-paragraph'>
+        	We believe that every student interested in participating in research at Berkeley should have the opportunity to do so. We are committed to individually helping new students find research on campus, developing student-led research projects, and connecting &amp; supporting students already involved in research.
+     	</p>
+	</div>
+
+	<div class='content-header'>
+		<h1 class='content-title'> Our Labs </h1>
+	</div>
+
+	<div class='content-header'>
+		<div class='frontpage-labs'>
+	      {% for key, lab in labs.items|slice:":4" %}
+	        <div class="lab-tile">
+              <a href="#{{ key }}">
+                <img class="tile-image" src="{% static  lab.image %}">
+              </a>
+              <a class="tile-title" href="#{{ key }}">
+                <span> {{ lab.full_name }} </span>
+              </a>
+	        </div>
+        {% if forloop.counter|divisibleby:4 %}
+        </div>
+        <br>
+        <!-- ENSURE MAX 4 ITEMS PER ROW -->
+		<div class='frontpage-labs'>
+		{% endif %}
+
+	      {% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
