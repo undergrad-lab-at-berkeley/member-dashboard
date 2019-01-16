@@ -86,6 +86,71 @@ button {
   margin: auto;
 }
 
+.header-links {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  padding: 0px;
+  padding-right: 16px;
+}
+
+.header-link {
+  margin: auto;
+  padding: 0px 16px;
+  font-size: 10pt;
+  font-weight: bold;
+  color: black;
+  opacity: 0.7;
+}
+
+.header-link:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+}
+
+.dropdown-container {
+  display: flex;
+  position: relative;
+}
+
+.dropdown-container:hover {
+  background: rgb(0,0,0,0.08);
+}
+
+.dropdown-container:hover .dropdown-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  border-radius: 4px;
+  border: solid 1px rgb(0,0,0,0.3);
+  top: 64px;
+  right: 32px;
+  z-index: 250;
+}
+
+.dropdown-menu > a {
+  padding: 12px 64px;
+  border-bottom: solid 1px rgb(0,0,0,0.05);
+  color: black;
+  width: 312px;
+}
+
+.dropdown-menu > a:hover {
+  background: rgb(0,0,0,0.08);
+  color: black;
+  /*background: rgb(50, 150, 255, 1);*/
+  /*color: white;*/
+}
+
 /*LOGIN FORM*/
 .login-container {
   position: fixed;
@@ -299,17 +364,34 @@ button {
   padding-bottom: 32px;
 }
 
+.content-left {
+  width: 60%;
+}
+
 .content-title {
   font-size: 48pt;
   font-weight: 100;
   margin: auto;
 }
 
+.paragraph-title {
+  font-size: 24px;
+  font-weight: 100;
+  margin: auto;
+  padding-bottom: 24px;
+/*  width: 50%;
+*/}
+
+.title-left {
+  margin-left: 0px;
+  width: 100%;
+}
+
 .content-paragraph {
   font-size: 14pt;
   font-weight: 100;
   margin: auto;
-  width: 50%;
+  /*width: 50%;*/
 }
 
 .content-search-form {
@@ -423,6 +505,12 @@ button {
   width: 84px;
   opacity: 0.5;
   padding-bottom: 8px;
+}
+
+/*LABS*/
+.lab-image {
+  height: 300px;
+  width: 300px;
 }
 
 /*ANIMATIONS*/

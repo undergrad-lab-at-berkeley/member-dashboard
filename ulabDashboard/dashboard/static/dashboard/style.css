@@ -100,8 +100,6 @@ button {
   flex-direction: column;
   justify-content: space-between;
   background: #F3F3F4;
-  /*background: rgb(245, 255, 245);*/*/
-  /*background: white;*/
   z-index: 10;
 }
 

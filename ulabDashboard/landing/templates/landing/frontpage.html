@@ -7,7 +7,7 @@
 		<h1 class='content-title'> Welcome to Research </h1>
 	</div>
 
-	<div class='content-header'>
+	<div class='content-header content-left'>
      	<p class='content-paragraph'>
         	We believe that every student interested in participating in research at Berkeley should have the opportunity to do so. We are committed to individually helping new students find research on campus, developing student-led research projects, and connecting &amp; supporting students already involved in research.
      	</p>
@@ -21,10 +21,10 @@
 		<div class='frontpage-labs'>
 	      {% for key, lab in labs.items|slice:":4" %}
 	        <div class="lab-tile">
-              <a href="#{{ key }}">
+              <a href="{% url 'lab' lab=key %}">
                 <img class="tile-image" src="{% static  lab.image %}">
               </a>
-              <a class="tile-title" href="#{{ key }}">
+              <a class="tile-title" href="{% url 'lab' lab=key %}">
                 <span> {{ lab.full_name }} </span>
               </a>
 	        </div>
