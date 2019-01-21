@@ -3,6 +3,7 @@ lab_content = {
 			'cogsci': {
 				'full_name': 'Psychology and Cognitive Sciences',
 				'image': 'logos/logo_cog_sci.png',
+                "staff": ["Riley McDanal", "Annelise Meyer", "Hareen Seerha", "Valerie Burleigh", "Stephanie Chang", "Adam Bittenson", "Allie Morehouse"],
                 "overview": {
                     "title": "Lab Overview",
                     "text": """
@@ -31,6 +32,7 @@ lab_content = {
 			'physics': {
 				'full_name': 'Physics and Astronomy',
 				'image': 'logos/logo_physics.png',
+                "staff": ["Arjun Savel", "Kim Ambrocio", "Thomas Low"],
                 "overview": {
                     "title": u"Lab Overview",
                     "text": u"""
@@ -59,6 +61,7 @@ lab_content = {
 			'bio': {
 				'full_name': 'Genetic Engineering and Molecular Biology',
 				'image': 'logos/logo_bio.png',
+                "staff": ["Catherine Livelo"],
 				"overview": {
 				    "title": "Lab Overview <span style='color:red;'>[Coming Soon!]</span>",
 				    "text": ""
@@ -78,6 +81,7 @@ lab_content = {
 			'health': {
 				'full_name': 'Public Health',
 				'image': 'logos/logo_public_health.png',
+                'staff': [],
 				"overview": {
 				    "title": "Lab Overview <span style='color:red;'>[Under Development!]</span>",
 				    "text": ""
@@ -97,6 +101,7 @@ lab_content = {
 			'data': {
 				'full_name': 'Data Science',
 				'image': 'logos/logo_data.png',
+                "staff": ["Alan Pham", "Neha Venkatesh", "Justin Gerwien"],
                 "overview": {
                     "title": "Lab Overview",
                     "text": u"""
@@ -126,6 +131,7 @@ lab_content = {
 			'atg': {
 				'full_name': 'Advanced Technologies Group',
 				'image': 'logos/logo_atg.png',
+                "staff": ["Dillon Eskandar", "Neil Toledo", "David Liu", "Kavi Vaidya", "Charlie Zhang", "Albert Huang"],
                 "overview": {
                     "title": "Lab Overview",
                     "text": "Founded by Phat Pham in Spring 2018, ULAB's Advanced Technologies Group (ATG) is an elite branch that was formed upon the realization that our labs spend way too much time building the tools they need for their experiments. What if we separate the engineering from the science? ATG is a full-blown organization dedicated to doing just that. More specifically, ATG is an augmented intelligence group that combines human-centered design, data science, and software development to help improve the efficiency of laboratories around the UC Berkeley campus and within ULAB itself. We are currently developing projects and curriculum for the upcoming semester in order to immerse students interested in software development immediately in the quickly-growing field."
@@ -149,6 +155,8 @@ lab_content = {
 			'ops': {
 				'full_name': 'Operations and Publicity',
 				'image': 'logos/logo_general.png',
+                "staff": ["Yasmeen Musthafa", "Min Young Kim", "Catherine Livelo", "Neha Venkatesh", "Alan Pham", "Justin Gerwien", "Jesslyn Cabero",
+                        "Jessica Tin", "Marwat Al-Olefi",  "Sunita Bohara", "Kasey Woo"],
                 "overview": {
                     "title": "Publicity/Partnerships Team",
                     "text": """
@@ -173,6 +181,7 @@ lab_content = {
 			'aerospace': {
 				'full_name': 'Robotics and Aerospace Engineering',
 				'image': 'logos/logo_robotics_aero.png',
+                'staff': [],
                 "overview": {
 				    "title": "Lab Overview <span style='color:red;'>[Under Development!]</span>",
                     "text": ""

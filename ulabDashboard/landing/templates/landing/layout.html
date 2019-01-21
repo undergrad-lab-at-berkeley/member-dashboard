@@ -12,6 +12,13 @@
 
         <link rel="stylesheet" type="text/css" href="{% static 'landing/style.css' %}?{% now "U" %}">
         <script type="text/javascript" src="{% static 'landing/jquery-3.3.1.min.js' %}"> </script>
+
+        <style>
+          html {
+            zoom: 80%;
+          }
+        </style>
+
     </head>
     <body>
         <div href="#" class='click-overlay'></div>
@@ -38,7 +45,7 @@
 
             <div class='header-links'>
               <span class='header-link' href="{% url 'frontpage' %}"> HOME </span>
-              <a class='header-link' href="#"> ABOUT US </a>
+              <a class='header-link' href="{% url 'about' %}"> ABOUT US </a>
               <a class='header-link' href="https://medium.com/undergraduate-laboratory-berkeley">BLOG</a>
               <div class='dropdown-container'> 
                 <span class='header-link'> OUR LABS&#9660 </span>

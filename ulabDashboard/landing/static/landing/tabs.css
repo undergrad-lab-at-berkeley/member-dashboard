@@ -1,0 +1,120 @@
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: 0.5px solid rgba(0,0,0,0.1);
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  min-width: 164px;
+  min-height: 64px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #47b475;
+  border: 0.5px solid #47b475;
+  color: white;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+/*Tab Styling*/
+.tablinks {
+  letter-spacing: 2px;
+}
+
+.about-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80vw;
+  margin: auto;
+}
+
+.about-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 0px 12px 12px 12px;
+  flex: 1;
+}
+
+.about-tile-image {
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  padding-bottom: 8px;
+  margin: 0px auto;
+}
+
+.about-tile-title {
+  font-size: 16pt;
+  font-weight: bold;
+
+  color: black;
+  margin: 0px auto;
+  display: flex;
+
+  text-align: center;
+}
+
+.about-tile-position {
+  font-size: 12pt;
+  font-weight: bold;
+
+  color: black;
+  margin: 0px auto;
+  display: flex;
+
+  text-align: center;
+}
+
+.about-tile-detail {
+  font-size: 11pt;
+  line-height: 2;
+  color: black;
+  margin: 0px auto;
+  display: flex;
+  text-align: left;
+}
+
+.partner-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  overflow: wrap;
+}
+
+.partner-logo {
+  max-height: 240px;
+  max-width: 80%;
+  padding-bottom: 32px;
+}
+
+.faq-list > li {
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.faq-answer {
+  font-weight: normal;
+}

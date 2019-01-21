@@ -1,5 +1,9 @@
 # THIS IS PLACEHOLDER CONTENT FROM THE LAST WEBSITE REVAMP
 
+founders = ["Joshua Hug", "Amit Akula", "Mrinalini Sugosh", "Alex Powers", "Dylan Kato", "Michael Oshiro"]
+advisors = ["Joshua Hug", "Alex Powers", "Sean Burns"]
+directors = ['Riley McDanal', 'Arjun Savel', 'Catherine Livelo', 'Alan Pham', 'Dillon Eskandar', 'Yasmeen Musthafa', 'Min Young Kim', 'Mrinalini Sugosh']
+
 member_content = {
 
         "Riley McDanal": {
@@ -10,7 +14,7 @@ member_content = {
             "facebook": "www.facebook.com/riley.mcdanal",
             "github": "",
             "personal": "",
-            "img": "img/staff/rileymcdanal.jpg"
+            "img": "staff_images/rileymcdanal.jpg"
         },
         "Annelise Meyer": {
             "title": "Vice Research Director",
@@ -28,7 +32,7 @@ member_content = {
             "facebook": "www.facebook.com/hareen.seerha",
             "github": "",
             "personal": "",
-            "img": "img/staff/hareenseerha1.png"
+            "img": "staff_images/hareenseerha1.png"
         },
         "Valerie Burleigh": {
             "title": "Operations Director",
@@ -46,7 +50,7 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/staff/stephaniechang.jpg"
+            "img": "staff_images/stephaniechang.jpg"
         },
         "Adam Bittenson": {
             "title": "Finance Director",
@@ -55,7 +59,7 @@ member_content = {
             "facebook": "www.facebook.com/profile.php?id=100000579046414",
             "github": "",
             "personal": "",
-            "img": "img/staff/adambittenson.png"
+            "img": "staff_images/adambittenson.png"
         },
         "Allie Morehouse": {
             "title": "Curriculum and Advising Director",
@@ -64,7 +68,7 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/staff/alliemorehouse.jpg"
+            "img": "staff_images/alliemorehouse.jpg"
         },
         "Colin Jindra": {
             "title": "Lead Mentor",
@@ -73,7 +77,7 @@ member_content = {
             "facebook": "https://www.facebook.com/colin.jindra",
             "github": "",
             "personal": "",
-            "img": "img/staff/colinjindra.png"
+            "img": "staff_images/colinjindra.png"
         },
        "Dillon Eskandar": {
             "title": "Director of Advanced Technologies Group",
@@ -83,7 +87,7 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/team/dillon_eskandar.png"
+            "img": "staff_images/dillon_eskandar.png"
         },
         "Neil Toledo": {
             "title": "Deputy Director of Advanced Technologies Group",
@@ -92,7 +96,7 @@ member_content = {
             "facebook": "",
             "github": "https://github.com/nnt1054",
             "personal": "",
-            "img": "img/team/neil_toledo.jpg"
+            "img": "staff_images/neil_toledo.jpg"
         },
         "David Liu": {
             "title": "Deputy Director of External Affairs",
@@ -101,7 +105,7 @@ member_content = {
             "facebook": "https://www.facebook.com/Dave.Liu.Here",
             "github": "https://github.com/daliu/",
             "personal": "https://daliu.github.io/",
-            "img": "img/team/dave_liu.png"
+            "img": "staff_images/dave_liu.png"
         },
         "Kavi Vaidya": {
             "title": "Deputy Director of Finance",
@@ -110,7 +114,7 @@ member_content = {
             "facebook": "https://www.facebook.com/kavi.vaidya",
             "github": "https://www.github.com/kavibvaidya",
             "personal": "",
-            "img": "img/team/kavi_vaidya.png",
+            "img": "staff_images/kavi_vaidya.png",
             "bio": "Programmer, Developer, Researcher."
         },
         "Charlie Zhang": {
@@ -129,7 +133,7 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/team/albert_huang.png"
+            "img": "staff_images/albert_huang.png"
         },
         "Yasmeen Musthafa": {
             "title": "Director of Operations",
@@ -148,7 +152,7 @@ member_content = {
             "personal": "",
             "github": "",
             "linkedin": "https://www.linkedin.com/in/min-young-kim-93281211a/",
-            "img": "img/staff/minyoungkim.jpg",
+            "img": "staff_images/minyoungkim.jpg",
             "bio": """I love listening to music and spend too much money on different concerts.
                         While I also enjoy watching movies, I usually get too lazy to go to a
                         movie theater to actually watch any of them, so I most likely will not
@@ -162,7 +166,7 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/staff/catherinelivelo.JPG"
+            "img": "staff_images/catherinelivelo.JPG"
         },
         "Justin Gerwien": {
             "title": "Data Science Lab Manager/Engineering Task Force",
@@ -171,7 +175,7 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/staff/justingerwien.JPG"
+            "img": "staff_images/justingerwien.JPG"
         },
         "Alan Pham": {
             "position": "Research Director: Data Science",
@@ -181,7 +185,7 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/staff/alanpham.jpg"
+            "img": "staff_images/alanpham.jpg"
         },
         "Sunita Bohara": {
             "title": "Events Coordinator",
@@ -190,7 +194,7 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/staff/sunitabohara.jpg"
+            "img": "staff_images/sunitabohara.jpg"
         },
         "Kasey Woo": {
             "title": "Events Coordinator",
@@ -199,7 +203,7 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/staff/kaseywoo.jpg"
+            "img": "staff_images/kaseywoo.jpg"
         },
         "Neha Venkatesh": {
             "title": "Data Science Lab Manager",
@@ -208,11 +212,11 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/staff/nehavenkatesh.JPG"
+            "img": "staff_images/nehavenkatesh.JPG"
         },
         "Alex Powers": {
             "title": "Cofounder",
-            "img": "img/team/alex_power.jpg",
+            "img": "staff_images/alex_power.jpg",
             "personal": "",
             "github": "",
             "linkedin": "",
@@ -221,7 +225,7 @@ member_content = {
         "Mrinalini Sugosh": {
             "title": "Director of Finance",
             "position": "ULAB Director of Finance",
-            "img": "img/team/mrinalini_sugosh.jpg",
+            "img": "staff_images/mrinalini_sugosh.jpg",
             "email": "mrinalini24@berkeley.edu",
             "personal": "",
             "github": "",
@@ -230,7 +234,7 @@ member_content = {
         },
         "Amit Akula": {
             "title": "Cofounder",
-            "img": "img/team/amit_akula.jpg",
+            "img": "staff_images/amit_akula.jpg",
             "personal": "",
             "github": "",
             "linkedin": "",
@@ -238,7 +242,7 @@ member_content = {
         },
         "Dylan Kato": {
             "title": "Lead Mentor",
-            "img": "img/team/dylan_kato.jpg",
+            "img": "staff_images/dylan_kato.jpg",
             "personal": "",
             "github": "",
             "linkedin": "",
@@ -246,7 +250,7 @@ member_content = {
         },
         "Michael Oshiro": {
             "title": "Cofounder",
-            "img": "img/team/michael_oshiro.jpg",
+            "img": "staff_images/michael_oshiro.jpg",
             "personal": "",
             "github": "",
             "linkedin": "",
@@ -254,7 +258,7 @@ member_content = {
         },
         "Joshua Hug": {
             "title": "Faculty Advisor",
-            "img": "img/team/josh_hug.jpg",
+            "img": "staff_images/josh_hug.jpg",
             "personal": "",
             "github": "",
             "linkedin": "",
@@ -262,7 +266,7 @@ member_content = {
         },
         "Sean Burns": {
             "title": "Faculty Advisor",
-            "img": "img/team/sean_burns.jpg",
+            "img": "staff_images/sean_burns.jpg",
             "bio": """Sean serves as the Director of the Office of Undergraduate Research and Scholarship (OURS) and has been involved with managing and founding organizations and services to assist undergraduate researchers in diverse communities. His own scholarship and teaching focuses on U.S. social movement history and the dynamic intersections of community activism, political education, and the remaking of the social imagination. He is enthusiastic about making ULAB a successful feature in the undergraduate research program ecosystem.""",
         },
         "Arjun Savel": {
@@ -301,7 +305,7 @@ member_content = {
             "facebook": "https://www.facebook.com/thomas.low.3781",
             "github": "",
             "personal": "",
-            "img": "img/staff/jesslyncabero.jpg"
+            "img": "staff_images/jesslyncabero.jpg"
         },
         "Jessica Tin": {
             "title": "Graphic Designer",
@@ -310,7 +314,7 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/staff/jessicatin.jpg"
+            "img": "staff_images/jessicatin.jpg"
         },
         "Marwat Al-Olefi": {
             "title": "Recruitment Chair",
@@ -319,6 +323,6 @@ member_content = {
             "facebook": "",
             "github": "",
             "personal": "",
-            "img": "img/staff/marwatal-olefi.jpg"
+            "img": "staff_images/marwatal-olefi.jpg"
         }
 }

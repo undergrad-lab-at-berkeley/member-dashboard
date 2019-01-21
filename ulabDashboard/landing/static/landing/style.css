@@ -20,8 +20,8 @@ button {
 /*OVERLAY*/
 .click-overlay {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   margin: 0px;
   padding: 0px;
   top: 0px;
@@ -41,7 +41,7 @@ button {
 .layout-header {
   position: fixed;
   top: 0px;
-  width: 100vw;
+  width: 100%;
   height: 64px;
   box-shadow: 0px 0px 5px grey;
   background: white;
@@ -391,7 +391,7 @@ button {
   font-size: 14pt;
   font-weight: 100;
   margin: auto;
-  /*width: 50%;*/
+  line-height: 1.5;
 }
 
 .content-search-form {
@@ -427,8 +427,14 @@ button {
   padding: 0px 12px 12px 12px;
 }
 
+.lab-tile > * {
+  text-align: center;
+}
+
 .tile-image {
   width: 192px;
+  height: 192px;
+  border-radius: 50%;
   padding-bottom: 8px;
 }
 
@@ -439,10 +445,19 @@ button {
   color: black;
   margin: auto;
   display: flex;
+
+  text-align: center;
 }
 
-.tile-title > span {
-  text-align: center;
+.tile-detail {
+  font-size: 10pt;
+}
+
+.staff-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
 }
 
 /*FOOTER*/

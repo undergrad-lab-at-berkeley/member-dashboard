@@ -15,34 +15,35 @@
         <p class='content-paragraph'> {{ lab.overview.text | safe }} </p>
     </div>
 
+    {% if staff %}
     <div class='content-header content-left'>
           <h4 class='paragraph-title title-left'> Our Staff </h4>
     </div>
-    <div class='content-header'>
-          <div class='lab-member-container'>
-          {% for person in lab.members %}
+    {% endif %}
 
-                  <div class="col-md-3">
-                      <div class="image-tile outer-title text-center">
-                          <img alt="Pic" class="profile-img">
-                          <div class="title">
-                              <h6 class="uppercase mb0">{{ person }} </h6>
-                              <h7> {{ person.title }} </h7>
-                              <div class="bio-icon">
-                                  <span> {{ person.email }} </span> <br/>
-                                  {% if not person.personal == '' %}
-                                      <span><a href="{{ person.personal }}" target="_blank"><i class="ti-world"></i></a></span>
-                                  {% endif %}
-                                  {% if not person.github == '' %}
-                                      <span><a href="{{ person.github }}" target="_blank"><i class="ti-github"></i></a></span>
-                                  {% endif %}
-                                  {% if not person.linkedin == '' %}
-                                      <span><a href="{{ person.linkedin }}" target="_blank"><i class="ti-linkedin"></i></a></span>
-                                  {% endif %}
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+    <div class='content-header'>
+          <div class='staff-container'>
+          {% for name, member in staff.items %}
+            <div class="lab-tile">
+                {% if member.img %}
+                <img class="tile-image" src="{% static  member.img %}">
+                {% else %}
+                <img class="tile-image" src="{% static  'logos/logo_general.png' %}">
+                {% endif %}
+
+                <a class="tile-title" href="#">
+                  <span> {{ name }} </span>
+                </a>
+                <span class="tile-detail"> {{ member.title }} </span>
+                <span class="tile-detail"> {{ member.email }} </span>
+            </div>
+
+          {% if forloop.counter|divisibleby:4 %}
+          </div>
+          <br>
+          <!-- ENSURE MAX 4 ITEMS PER ROW -->
+          <div class='staff-container'>
+          {% endif %}
 
           {% endfor %}
           </div>
