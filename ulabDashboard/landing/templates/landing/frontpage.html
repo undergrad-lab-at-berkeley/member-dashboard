@@ -28,12 +28,6 @@
                 <span> {{ lab.full_name }} </span>
               </a>
 	        </div>
-        {% if forloop.counter|divisibleby:4 %}
-        </div>
-        <br>
-        <!-- ENSURE MAX 4 ITEMS PER ROW -->
-		<div class='frontpage-labs'>
-		{% endif %}
 
 	      {% endfor %}
 		</div>

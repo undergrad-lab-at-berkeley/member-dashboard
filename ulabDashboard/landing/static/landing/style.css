@@ -62,7 +62,7 @@ button {
   padding: 6px;
   margin: auto;
   font-size: 12pt;
-  font-weight: 200;
+  font-weight: bold;
   color: #47b475;
 }
 
@@ -418,17 +418,22 @@ button {
   flex-direction: row;
   justify-content: space-between;
   margin: auto;
+  width: 60%;
+  margin: auto;
+  flex-wrap: wrap;
 }
 
 .lab-tile {
   display: flex;
   flex-direction: column;
   width: 192px;
-  padding: 0px 12px 12px 12px;
+  padding-bottom: 32px;
+  flex: 1 0 21%;
 }
 
 .lab-tile > * {
   text-align: center;
+  margin: 0px auto;
 }
 
 .tile-image {
@@ -440,12 +445,9 @@ button {
 
 .tile-title {
   font-size: 14pt;
-  font-weight: 500;
-
+  font-weight: bold;
   color: black;
-  margin: auto;
   display: flex;
-
   text-align: center;
 }
 
@@ -456,8 +458,10 @@ button {
 .staff-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 90vw;
   margin: auto;
+  flex-wrap: wrap;
 }
 
 /*FOOTER*/
