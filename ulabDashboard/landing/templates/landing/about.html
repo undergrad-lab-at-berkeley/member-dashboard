@@ -1,0 +1,167 @@
+{% extends 'landing/layout.html' %}
+{% load static %}
+
+{% block content %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'landing/tabs.css' %}?{% now "U" %}">
+    <script type="text/javascript" src="{% static 'landing/tabs.js' %}"> </script>
+
+	<div class='content-header'>
+		<h1 class='content-title'> About Us </h1>
+	</div>
+
+	<!-- Tab links -->
+	<div class='content-header'>
+		<div class="tab">
+		  <button class="tablinks" onclick="openTab(event, 'Mission')" id="defaultOpen">MISSION</button>
+		  <button class="tablinks" onclick="openTab(event, 'Founders')">FOUNDERS</button>
+		  <button class="tablinks" onclick="openTab(event, 'Advisors')">ADVISORS</button>
+		  <button class="tablinks" onclick="openTab(event, 'Leadership')">LEADERSHIP</button>
+		  <button class="tablinks" onclick="openTab(event, 'Partners')">PARTNERS</button>
+		  <button class="tablinks" onclick="openTab(event, 'FAQs')">FAQS</button>
+		</div>
+	</div>
+
+	<!-- Tab content -->
+	<div class='content-header'>
+		<div id="Mission" class="tabcontent content-header content-left">
+		  	<p class='content-paragraph'>
+				&emsp;&emsp; A productive and enjoyable undergraduate research experience at Berkeley requires a significant activation energy that deters many beginning students. This stems from a tendency for many programs to favor already experienced students and difficulty for new students in navigating a complex myriad of resources. Additionally, students who assist graduate mentors often do not get the chance to generate ideas themselves or interact with other undergraduate researchers in diverse fields.
+				<br> <br>
+				&emsp;&emsp; ULAB proposes to create an undergraduate “research lab” to gently introduce new students to research at Berkeley as well as provide a social/mentoring experience for already advanced undergraduate researchers to learn from each other and develop professionally. “Lab members” will attend workshops on professional communications or reading research papers, go on tours of campus research labs, listen to talks by professors, and present on their own research work. The program is particularly aimed at students who are interested in research but might not be as aggressive or experienced to seek out these opportunities on their own – ULAB will be the catalyst to kickstart their Berkeley research careers.                                    
+		  	</p>
+		</div>
+
+		<div id="Founders" class="tabcontent content-header">
+			<br>
+	         <div class='about-container'>
+	         {% for name, member in founders.items %}
+	            <div class="about-tile">
+	                {% if member.img %}
+	                <img class="about-tile-image" src="{% static  member.img %}">
+	                {% else %}
+	                <img class="about-tile-image" src="{% static  'logos/logo_general.png' %}">
+	                {% endif %}
+
+	                <a class="about-tile-title" href="#">
+	                  <span> {{ name }} </span>
+	                </a>
+	                <span class="about-tile-detail"> &emsp;&emsp;{{ member.bio }} </span>
+	            </div>
+
+          	{% if forloop.counter|divisibleby:3 %}
+          	</div>
+          	<br>
+          	<!-- ENSURE MAX 3 ITEMS PER ROW -->
+          	<div class='about-container'>
+          	{% endif %}
+
+	        {% endfor %}
+	        </div>
+		</div>
+
+		<div id="Advisors" class="tabcontent content-header">
+			<br>
+	        <div class='about-container'>
+	        {% for name, member in advisors.items %}
+	            <div class="about-tile">
+	                {% if member.img %}
+	                <img class="about-tile-image" src="{% static  member.img %}">
+	                {% else %}
+	                <img class="about-tile-image" src="{% static  'logos/logo_general.png' %}">
+	                {% endif %}
+
+	                <a class="about-tile-title" href="#">
+	                  <span> {{ name }} </span>
+	                </a>
+	                <span class="about-tile-detail"> &emsp;&emsp;{{ member.bio }} </span>
+	            </div>
+
+          	{% if forloop.counter|divisibleby:3 %}
+          	</div>
+          	<br>
+          	<!-- ENSURE MAX 3 ITEMS PER ROW -->
+          	<div class='about-container'>
+          	{% endif %}
+
+	        {% endfor %}
+	        </div>
+		</div>
+
+		<div id="Leadership" class="tabcontent">
+			<br>
+	        <div class='about-container'>
+	        {% for name, member in directors.items %}
+	            <div class="about-tile">
+	                {% if member.img %}
+	                <img class="about-tile-image" src="{% static  member.img %}">
+	                {% else %}
+	                <img class="about-tile-image" src="{% static  'logos/logo_general.png' %}">
+	                {% endif %}
+
+	                <a class="about-tile-title" href="#">
+	                  <span> {{ name }} </span>
+	                </a>
+	                <span class="about-tile-position"> {{ member.position }} </span>
+	                <span class="about-tile-detail"> {{ member.email }} </span>
+	            </div>
+
+          	{% if forloop.counter|divisibleby:3 %}
+          	</div>
+          	<br>
+          	<!-- ENSURE MAX 3 ITEMS PER ROW -->
+          	<div class='about-container'>
+          	{% endif %}
+
+	        {% endfor %}
+	        </div>
+		</div>
+
+		<div id="Partners" class="tabcontent content-header">
+			<div class='partner-container'>
+				<img class='partner-logo' src="{% static  'logos/partners/partner1.png' %}">
+				<img class='partner-logo' src="{% static  'logos/partners/partner2.jpg' %}">
+			</div>
+			<div class='partner-container'>
+				<img class='partner-logo' src="{% static  'logos/partners/partner3.jpg' %}">
+			</div>
+		</div>
+
+		<div id="FAQs" class="tabcontent content-header content-left">
+			<ol class='faq-list'>
+                <li> <span class='faq-question'> What are the preferred qualifications in a lab? </span>
+                	<br> <br>
+                    <ul class='faq-answer'>
+                        <li><span style='text-decoration: underline;'>Executive Staff</span>: posses strong research knowledge, think innovatively, able to be highly flexible, and work well without supervision; creative, dedicated, and comfortable with horizontal leadership</li>
+                        <li><span style='text-decoration: underline;'>Mentors</span>: posses some form of laboratory-based research experience; proficient in tutoring, solving social problems, and overseeing a group dynamic; innovative, creative, and well-versed in their subject area of choice</li>
+                        <li><span style='text-decoration: underline;'>Mentees</span>: posses a strong passion for their realm of research, a willingness to work hard even when innovative thinking is required, and responsibility in a group work environment.</li>
+                    </ul>
+                </li>
+
+                <p></p>
+
+                <li>
+                    <span class='faq-question'> How do you pick the projects? </span>
+                    <p class='faq-answer'>Typically, the leadership lets the mentors use their subject area of choice for their mentorship, with leadership approval and support. The mentees work with the mentor to develop a specific research question in the area of interest. These change each year.</p>
+                </li>
+                <li>
+                    <span class='faq-question'> How does this help me advance my research career? </span>
+                    <p class='faq-answer'> Students can learn necessary skills and show their dedication to research in our year-long self-propelled research projects. Furthermore, we work with students to help them gain admittance to labs of their choice. Staff can gain leadership experience in a laboratory setting, often a rarity for undergraduates. For all members, there is opportunity for advancement to our executive team, including positions such as Research Director and Lab Manager, which we intend to shift each year to give this opportunity to the most students possible.</p>
+                </li>
+                <li>
+                    <span class='faq-question'> What if I have a busy or strict schedule? </span>
+                    <p class='faq-answer'>This lab is for undergraduates by undergraduates. We work very hard to be accommodating to each of our members. Students are helped by mentors, mentors are helped by the executive team, and the executive team is helped by the Research Director and Lab Manager. We all work communally to shift work around as appropriate, and almost all meetings are flexible. Much of the lab’s work is done individually so that students and staff can fit their activities around their own schedules.</p>
+                </li>
+                <li>
+                    <span class='faq-question'> Is ULAB right for me? </span>
+                    <p class='faq-answer'>Do you have a passion for research? For helping the more inexperienced/underrepresented students? For working on projects in your own area of interest? For working collaboratively? Are you comfortable having the responsibility of adding your own vision to whatever position you may hold? If yes, then this organization is for you.</p>
+                </li>
+            </ol>
+		</div>
+	</div>
+
+	<script>
+		document.getElementById("defaultOpen").click();
+	</script>
+
+{% endblock %}

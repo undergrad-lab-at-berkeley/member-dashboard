@@ -4,6 +4,11 @@
 {% block content %}
 
     <h1 class='content-title'> {{ project.name }}</h1>
+    {% if user_is_manager  %}
+      <p class='msg-description medium-text'>
+        <a href="{% url 'project_settings' proj_id=project.id %}" class='edit-link'>
+          Edit Project</a>
+    {% endif %}
     <p class='msg-description medium-text'>Lab: {{ project.lab.name }}</p>
     <p class='msg-description medium-text'>Started: {{ project.start_date }}</p>
     <p class='msg-description medium-text'>Ended: {{ project.end_date }}</p>

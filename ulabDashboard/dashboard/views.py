@@ -93,11 +93,56 @@ def people_directory(request):
 @check_login
 def project(request, proj_id):
     project = get_object_or_404(Project, pk=proj_id)
+    user_is_manager = False
+    if not request.user.is_anonymous and request.user.member in project.managers.all():
+      user_is_manager = True
     context = {
       'project': project,
+      'user_is_manager': user_is_manager,
       'form': AuthenticationForm()
     }
     return render(request, 'dashboard/project.html', context)
+
+@check_login
+def project_settings(request, proj_id):
+    project = get_object_or_404(Project, pk=proj_id)
+    if request.user.is_anonymous or request.user.member not in project.managers.all():
+      return HttpResponseRedirect(reverse('all_announcements'))
+
+    if request.method == 'POST':
+      if request.POST.get("addAsManager"):
+        member = get_object_or_404(Member, pk=request.POST.get("addAsManager"))
+        if member not in project.managers.all():
+          project.managers.add(member)
+      elif request.POST.get("addAsResearcher"):
+        member = get_object_or_404(Member, pk=request.POST.get("addAsResearcher"))
+        if member not in project.researchers.all():
+          project.researchers.add(member)
+
+      elif request.POST.get("removeAsManager"):
+        member = get_object_or_404(Member, pk=request.POST.get("removeAsManager"))
+        if member in project.managers.all():
+          project.managers.remove(member)
+      elif request.POST.get("removeAsResearcher"):
+        member = get_object_or_404(Member, pk=request.POST.get("removeAsResearcher"))
+        if member in project.researchers.all():
+          project.researchers.remove(member)
+      elif request.POST.get("removeFromProject"):
+        member = get_object_or_404(Member, pk=request.POST.get("removeFromProject"))
+        if member in project.researchers.all():
+          project.researchers.remove(member)
+        if member in project.managers.all():
+          project.managers.remove(member)
+      return HttpResponseRedirect(reverse('project_settings', kwargs={'proj_id': proj_id}))
+
+    people = [x for x in Member.objects.all() if x not in project.managers.all() and x not in project.researchers.all()]
+    context = {
+      'project': project,
+      'people': people,
+      'user_is_manager' : True,
+      'form': AuthenticationForm()
+    }
+    return render(request, 'dashboard/project_settings.html', context)
 
 @check_login
 def projects_directory(request):
@@ -209,11 +254,50 @@ def edit_announcement(request, announcement_id):
 @check_login
 def group_page(request, group_id):
     group = get_object_or_404(Subgroup, pk=group_id)
+    user_is_mentor = False
+    if not request.user.is_anonymous and request.user.member in group.mentors.all():
+      user_is_mentor = True
     context = {
       'group': group,
+      'user_is_mentor': user_is_mentor,
       'form': AuthenticationForm()
     }
     return render(request, 'dashboard/subgroup.html', context)
+
+@check_login
+def group_settings(request, group_id):
+    group = get_object_or_404(Subgroup, pk=group_id)
+    if request.user.is_anonymous or request.user.member not in group.mentors.all():
+      return HttpResponseRedirect(reverse('all_announcements'))
+
+    if request.method == 'POST':
+      if request.POST.get("moveToMembers"):
+        member = get_object_or_404(Member, pk=request.POST.get("moveToMembers"))
+        if member not in group.members.all():
+          group.members.add(member)
+        if member in group.mentors.all():
+          group.mentors.remove(member)
+      elif request.POST.get("moveToMentors"):
+        member = get_object_or_404(Member, pk=request.POST.get("moveToMentors"))
+        if member not in group.mentors.all():
+          group.mentors.add(member)
+        if member in group.members.all():
+          group.members.remove(member)
+      elif request.POST.get("removeFromGroup"):
+        member = get_object_or_404(Member, pk=request.POST.get("removeFromGroup"))
+        if member in group.mentors.all():
+          group.mentors.remove(member)
+        if member in group.members.all():
+          group.members.remove(member)
+      return HttpResponseRedirect(reverse('group_settings', kwargs={'group_id': group_id}))
+
+    people = [x for x in Member.objects.all() if x not in group.mentors.all() and x not in group.members.all()]
+    context = {
+      'group': group,
+      'people': people,
+      'form': AuthenticationForm()
+    }
+    return render(request, 'dashboard/subgroup_settings.html', context)
 
 def user_groups(request):
     auth_user = request.user

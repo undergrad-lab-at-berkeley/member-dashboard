@@ -6,14 +6,15 @@
 	    <h1 class='content-title'> Research Projects </h1>
 	    <form class='content-search-form' action="{% url 'projects' %}" method="GET">
     		<input class='content-search' type="text" placeholder="Search.." name="search">
-	    </form>	</div>
-      {% for project in projects %}
-          <div class='announcment-entry'>
-            <a href="{% url 'project' proj_id=project.id %}"> <span class='msg-title'>
-              {{ project.name }}</span> </a>
-            <p class='msg-description'>&emsp;&emsp;{{ project.status }}
-            </p>
-          </div>
-      {% endfor %}
+	    </form>
+  </div>
+  {% for project in projects %}
+      <div class='announcment-entry'>
+        <a href="{% url 'project' proj_id=project.id %}"> <span class='msg-title'>
+          {{ project.name }}</span> </a>
+        <p class='msg-description'>&emsp;&emsp;{{ project.status }}
+        </p>
+      </div>
+  {% endfor %}
 
 {% endblock %}

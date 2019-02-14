@@ -1,0 +1,68 @@
+{% extends 'landing/layout.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class='content-header'>
+      <img class='lab-image' src="{% static  lab.image %}">
+    </div>
+    <div class='content-header'>
+      <h1 class="content-title title-left"> {{ lab.full_name }} </h1>
+    </div>
+
+    <div class='content-header content-left'>
+        <h4 class='paragraph-title title-left'> {{ lab.overview.title | safe }}</h4>
+        <p class='content-paragraph'> {{ lab.overview.text | safe }} </p>
+    </div>
+
+    {% if staff %}
+    <div class='content-header content-left'>
+          <h4 class='paragraph-title title-left'> Our Staff </h4>
+    </div>
+    {% endif %}
+
+    <div class='content-header'>
+          <div class='staff-container'>
+          {% for name, member in staff.items %}
+            <div class="lab-tile">
+                {% if member.img %}
+                <img class="tile-image" src="{% static  member.img %}">
+                {% else %}
+                <img class="tile-image" src="{% static  'logos/logo_general.png' %}">
+                {% endif %}
+
+                <a class="tile-title" href="#">
+                  <span> {{ name }} </span>
+                </a>
+                <span class="tile-detail"> {{ member.title }} </span>
+                <span class="tile-detail"> {{ member.email }} </span>
+            </div>
+
+<!--           {% if forloop.counter|divisibleby:4 %}
+          </div>
+          <br>
+          ENSURE MAX 4 ITEMS PER ROW
+          <div class='staff-container'>
+          {% endif %} -->
+
+          {% endfor %}
+          </div>
+    </div>
+
+    <div class='content-header content-left'>
+        <h4 class='paragraph-title title-left'> {{ lab.join.title | safe }} </h4>
+        <p class='content-paragraph'> {{ lab.join.text | safe }} </p>
+    </div>
+
+    <div class='content-header content-left'>
+      <h4 class='paragraph-title title-left'> {{ lab.calendar.title | safe }} </h4>
+      <p class='content-paragraph'> {{ lab.calendar.text | safe }} </p>
+    </div>
+
+    <div class='content-header'>
+      <div class="row center-div">
+        {{ lab.calendar.object| safe }}
+      </div>
+    </div>
+
+{% endblock %}
