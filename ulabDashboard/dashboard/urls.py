@@ -16,6 +16,7 @@ urlpatterns = [
     path('projects/my_projects', views.user_projects, name='user_projects'),
     path('people/<slug:username>/edit', views.edit_profile, name='edit_profile'),
     path('groups/<int:group_id>/', views.group_page, name='group'),
+    path('groups/<int:group_id>/settings', views.group_settings, name='group_settings'),
     path('groups/', views.user_groups, name='user_groups'),
 ]
 

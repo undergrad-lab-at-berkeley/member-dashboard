@@ -5,6 +5,11 @@
 
     <h1 class='content-title'> {{ group.name }}</h1>
     <p class='msg-description medium-text'>Lab: {{ group.lab.name }}</p>
+    {% if user_is_mentor  %}
+      <p class='msg-description medium-text'>
+        <a href="{% url 'group_settings' group_id=group.id %}" class='edit-link'>
+          Subgroup Settings</a>
+    {% endif %}
     <p class='msg-description medium-text'>Description:</p>
     <div class='msg-description medium-text about-container'>{{ group.description | linebreaks }}</div>
 
