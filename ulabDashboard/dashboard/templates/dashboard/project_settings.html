@@ -1,0 +1,54 @@
+{% extends 'dashboard/layout.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class='content-title'> {{ project.name }}: Settings</h1>
+
+	<h2> Lab Managers </h2>
+	{% for person in project.managers.all %}
+      	<div class='announcment-entry'>
+			<a href="{% url 'profile' username=person.user.username %}" class='msg-title'> {{ person.full_name }} </a>
+			<div class='options-row'>
+				<form action="{{ request.path }}" method="post" class="">
+			        {% csrf_token %}
+					<span style="padding-left: 12px;"> Actions: </span>
+					<button name="addAsResearcher" value="{{ person.id }}">Add to Researchers</button>
+					<button name="removeAsManager" value="{{ person.id }}">Remove as Manager</button>
+					<button name="removeFromProject" value="{{ person.id }}">Remove from Project</button>
+				</form>
+			</div>
+		</div>
+    {% endfor %}
+
+	<h2> Researchers </h2>
+		{% for person in project.researchers.all %}
+      	<div class='announcment-entry'>
+			<a href="{% url 'profile' username=person.user.username %}" class='msg-title'> {{ person.full_name }} </a>
+			<div class='options-row'>
+				<form action="{{ request.path }}" method="post" class="">
+			        {% csrf_token %}
+					<span style="padding-left: 12px;"> Actions: </span>
+					<button name="addAsManager" value="{{ person.id }}">Add to Managers</button>
+					<button name="removeAsResearcher" value="{{ person.id }}">Remove as Researcher</button>
+					<button name="removeFromProject" value="{{ person.id }}">Remove from Project</button>
+				</form>
+			</div>
+		</div>
+    {% endfor %}
+
+	<h2> Add New Members </h2>
+	{% for person in people %}
+      	<div class='announcment-entry'>
+			<a href="{% url 'profile' username=person.user.username %}" class='msg-title'> {{ person.full_name }} </a>
+			<div class='options-row'>
+				<form action="{{ request.path }}" method="post" class="">
+			        {% csrf_token %}
+					<span style="padding-left: 12px;"> Actions: </span>
+					<button name="addAsResearcher" value="{{ person.id }}">Add as Researcher</button>
+					<button name="addAsManager" value="{{ person.id }}">Add as Manager</button>
+				</form>
+			</div>
+		</div>
+    {% endfor %}
+
+{% endblock %}

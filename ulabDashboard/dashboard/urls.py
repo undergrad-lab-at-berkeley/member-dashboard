@@ -12,6 +12,7 @@ urlpatterns = [
     path('people/<slug:username>/', views.profile, name='profile'),
     path('people/', views.people_directory, name='people'),
     path('projects/<int:proj_id>/', views.project, name='project'),
+    path('projects/<int:proj_id>/settings', views.project_settings, name='project_settings'),
     path('projects/', views.projects_directory, name='projects'),
     path('projects/my_projects', views.user_projects, name='user_projects'),
     path('people/<slug:username>/edit', views.edit_profile, name='edit_profile'),

@@ -93,11 +93,56 @@ def people_directory(request):
 @check_login
 def project(request, proj_id):
     project = get_object_or_404(Project, pk=proj_id)
+    user_is_manager = False
+    if not request.user.is_anonymous and request.user.member in project.managers.all():
+      user_is_manager = True
     context = {
       'project': project,
+      'user_is_manager': user_is_manager,
       'form': AuthenticationForm()
     }
     return render(request, 'dashboard/project.html', context)
+
+@check_login
+def project_settings(request, proj_id):
+    project = get_object_or_404(Project, pk=proj_id)
+    if request.user.is_anonymous or request.user.member not in project.managers.all():
+      return HttpResponseRedirect(reverse('all_announcements'))
+
+    if request.method == 'POST':
+      if request.POST.get("addAsManager"):
+        member = get_object_or_404(Member, pk=request.POST.get("addAsManager"))
+        if member not in project.managers.all():
+          project.managers.add(member)
+      elif request.POST.get("addAsResearcher"):
+        member = get_object_or_404(Member, pk=request.POST.get("addAsResearcher"))
+        if member not in project.researchers.all():
+          project.researchers.add(member)
+
+      elif request.POST.get("removeAsManager"):
+        member = get_object_or_404(Member, pk=request.POST.get("removeAsManager"))
+        if member in project.managers.all():
+          project.managers.remove(member)
+      elif request.POST.get("removeAsResearcher"):
+        member = get_object_or_404(Member, pk=request.POST.get("removeAsResearcher"))
+        if member in project.researchers.all():
+          project.researchers.remove(member)
+      elif request.POST.get("removeFromProject"):
+        member = get_object_or_404(Member, pk=request.POST.get("removeFromProject"))
+        if member in project.researchers.all():
+          project.researchers.remove(member)
+        if member in project.managers.all():
+          project.managers.remove(member)
+      return HttpResponseRedirect(reverse('project_settings', kwargs={'proj_id': proj_id}))
+
+    people = [x for x in Member.objects.all() if x not in project.managers.all() and x not in project.researchers.all()]
+    context = {
+      'project': project,
+      'people': people,
+      'user_is_manager' : True,
+      'form': AuthenticationForm()
+    }
+    return render(request, 'dashboard/project_settings.html', context)
 
 @check_login
 def projects_directory(request):
@@ -245,15 +290,6 @@ def group_settings(request, group_id):
         if member in group.members.all():
           group.members.remove(member)
       return HttpResponseRedirect(reverse('group_settings', kwargs={'group_id': group_id}))
-
-      # userForm = EditUserForm(request.POST, instance=auth_user, prefix="userForm")
-      # memberForm = EditMemberForm(request.POST, instance=profile, prefix="memberForm")
-      # if userForm.is_valid() and memberForm.is_valid():
-      #   auth_user.save()
-      #   profile.save()
-      #   return HttpResponseRedirect(reverse('profile', kwargs={
-      #     'username': auth_user.username
-      #   }))
 
     people = [x for x in Member.objects.all() if x not in group.mentors.all() and x not in group.members.all()]
     context = {
