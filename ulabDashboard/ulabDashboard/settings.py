@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -79,10 +80,31 @@ WSGI_APPLICATION = 'ulabDashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# SQLITE SETTINGS
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+# POSTGRES SETTINGS
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'ulabDashboard',
+    #     'USER': 'ulabAdmin',
+    #     'PASSWORD': 'atg1',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '5432',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ddadhlk0kfhqgk',
+        'USER': 'oowejwmszpdslw',
+        'PASSWORD': 'ec3ad8e54fc327d5840d3f3c59173c29dd7a0393f2de29819fe59f3c46ffbf85',
+        'HOST': 'ec2-50-19-249-121.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -132,3 +154,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGOUT_REDIRECT_URL = 'homepage'
 LOGIN_URL = 'homepage'
+
+django_heroku.settings(locals())
